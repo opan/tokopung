@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+# Fix issue bind turbolinks
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,6 +37,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -45,3 +50,13 @@ group :development do
   gem 'spring'
 end
 
+# Use haml template
+gem 'haml-rails'
+
+# RTE CKeditor
+gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
+
+# Pagination
+gem 'kaminari'
