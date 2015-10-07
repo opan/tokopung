@@ -40,6 +40,16 @@ group :development, :test do
   
   gem 'better_errors'
   gem 'binding_of_caller'
+  
+  # For testing purpose
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
+group :test do
+
 end
 
 group :development do
