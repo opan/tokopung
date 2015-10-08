@@ -73,3 +73,6 @@ gem 'kaminari'
 
 # For authentication
 gem 'devise'
+
+# Load our Engine
+gem 'mesin_core', path: "engines/core"
