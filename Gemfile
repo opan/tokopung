@@ -70,3 +70,6 @@ gem 'mini_magick'
 
 # Pagination
 gem 'kaminari'
+
+# For authentication
+gem 'devise'
