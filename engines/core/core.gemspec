@@ -18,7 +18,20 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.4"
   s.add_dependency "haml-rails"
+  s.add_dependency "mini_magick"
+  s.add_dependency "ckeditor"
+  s.add_dependency "carrierwave"
+  s.add_dependency "kaminari"
+  s.add_dependency 'bcrypt'
+  s.add_dependency "twitter-bootstrap-rails"
+  s.add_dependency "less-rails"
+  s.add_dependency 'jquery-rails'
+  s.add_dependency 'therubyracer'
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'uglifier'
+  s.add_dependency 'coffee-rails'
 
-  # using 'pg' instead sqlite
   s.add_development_dependency "pg"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "factory_girl_rails"
 end
