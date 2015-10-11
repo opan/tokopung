@@ -18,6 +18,10 @@ end
 
 load 'rails/tasks/statistics.rake'
 
+# load "haml-rails" raketask 
+haml_rails = Gem::Specification.find_by_name "haml-rails"
+load "#{haml_rails.gem_dir}/lib/tasks/erb2haml.rake"
+
 
 
 Bundler::GemHelper.install_tasks

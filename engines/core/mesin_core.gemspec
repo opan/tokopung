@@ -31,12 +31,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'devise'
-  s.add_dependency 'rspec-rails', '~> 3.0'
-  s.add_dependency 'factory_girl_rails'
-  s.add_dependency 'capybara'
-  s.add_dependency 'database_cleaner'
-
+  
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl_rails"
+  s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "capybara"
 end
