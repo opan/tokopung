@@ -12,6 +12,10 @@ require "kaminari"
 require "jquery-rails"
 require "uglifier"
 require "coffee-rails"
+require "rspec-rails"
+require "factory_girl_rails"
+require "capybara"
+require "database_cleaner"
 
 module Mesin
   module Core
@@ -26,7 +30,7 @@ module Mesin
           end
         end
       end # end :append_migrations
-      
+
     end # end Engine
   end # end Core
 end # end Mesin
