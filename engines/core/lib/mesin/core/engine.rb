@@ -16,6 +16,7 @@ require "rspec-rails"
 require "factory_girl_rails"
 require "capybara"
 require "database_cleaner"
+require "devise"
 
 module Mesin
   module Core
