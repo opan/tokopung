@@ -32,6 +32,10 @@ module Mesin
         end
       end # end :append_migrations
 
+      # load our mesin views to default paths, to make shorten call for rendering views
+      # ex: "dashboard/index" instead of "mesin/dashboard/index"
+      paths["app/views"] << "app/views/mesin"
+
     end # end Engine
   end # end Core
 end # end Mesin
