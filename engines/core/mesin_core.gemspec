@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'
+  s.add_dependency 'devise'
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails"
