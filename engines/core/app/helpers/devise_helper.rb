@@ -16,18 +16,24 @@ module DeviseHelper
         end
       end)
     end)
-    # html = <<-HTML
-    # <div id="error_explanation">
-    #   <h2>#{sentence}</h2>
-    #   <ul>#{messages}</ul>
-    # </div>
-    # HTML
 
-    # html.html_safe
     nil
   end
 
   def devise_error_messages?
     resource.errors.empty? ? false : true
   end
+  
+  def resource
+    @resource ||= Mesin::User.new
+  end
+
+  def resource_name
+    :user
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 end

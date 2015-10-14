@@ -11,6 +11,7 @@ task :seeding => :environment  do
 
   Mesin::Role.create([
     {role_name: "admin", it_can_be_deleted: false, created_at: DateTime.now, updated_at: DateTime.now}, 
-    {role_name: "super_admin", it_can_be_deleted: false, created_at: DateTime.now, updated_at: DateTime.now}
+    {role_name: "super_admin", it_can_be_deleted: false, created_at: DateTime.now, updated_at: DateTime.now},
+    {role_name: "customer", it_can_be_deleted: false, created_at: DateTime.now, updated_at: DateTime.now}
   ])
 end
