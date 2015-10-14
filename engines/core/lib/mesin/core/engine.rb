@@ -17,6 +17,7 @@ require "factory_girl_rails"
 require "capybara"
 require "database_cleaner"
 require "devise"
+require "pundit"
 
 module Mesin
   module Core
