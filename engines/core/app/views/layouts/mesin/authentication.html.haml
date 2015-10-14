@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Tokopung
+    = stylesheet_link_tag    'mesin/application', media: 'all'
+    = javascript_include_tag 'mesin/application'
+    = csrf_meta_tags
+  %body
+    .container-fluid{role: "main"}
+      - # if we dont do this, flash_message will be load lately
+      - content_for :flash_message do
+        = flash_message
+
+      = yield :flash_message
+      
+      .jumbotron
+        = yield
+
