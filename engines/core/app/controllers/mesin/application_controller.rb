@@ -6,8 +6,6 @@ module Mesin
     layout :choose_layout
     before_action :authenticate_user!
 
-
-
     protected
 
     def choose_layout
