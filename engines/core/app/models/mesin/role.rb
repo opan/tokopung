@@ -36,7 +36,7 @@ module Mesin
       arr_data    = []
 
       Mesin::Role.reflect_on_all_associations(:has_many).map do |assoc|
-        if not assoc.name.to_s.eql? "role_users"
+        if assoc.name.to_s.eql? "users"
           arr_data << [send(assoc.name).table_name, assoc.options[:primary_key]] if !send(assoc.name).empty?
         end
       end

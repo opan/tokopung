@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Core feature of TokoPung"
   s.description = "Core feature of TokoPung"
   s.license     = "MIT"
+  # s.test_files  = Dir["spec/**/*"]
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 

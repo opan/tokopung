@@ -33,6 +33,13 @@ module Mesin
         end
       end # end :append_migrations
 
+      # setting up Core engine generators
+      config.generators do |g|
+        g.template_engine :haml
+        g.test_framework    :rspec, :fixture => false
+        g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      end
+
       # load our mesin views to default paths, to make shorten call for rendering views
       # ex: "dashboard/index" instead of "mesin/dashboard/index"
       paths["app/views"] << "app/views/mesin"
