@@ -11,11 +11,12 @@
       .container
         .navbar-header
           = link_to "TokoPung", mesin.root_path, class: "navbar-brand"
-    .container{role: "main"}
+    .container-fluid{role: "main"}
       - # if we dont do this, flash_message will be load lately
       - content_for :flash_message do
         = flash_message
 
       = yield :flash_message
-      = yield
+      .jumbotron
+        = yield
 

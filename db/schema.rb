@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011122425) do
+ActiveRecord::Schema.define(version: 20151014015817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mesin_roles", force: :cascade do |t|
+    t.string   "role_name",         limit: 50,                 null: false
+    t.boolean  "it_can_be_deleted",            default: false, null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "mesin_roles", ["role_name"], name: "index_mesin_roles_on_role_name", unique: true, using: :btree
 
   create_table "mesin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,11 +36,23 @@ ActiveRecord::Schema.define(version: 20151011122425) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role",                                null: false
   end
 
+  add_index "mesin_users", ["confirmation_token"], name: "index_mesin_users_on_confirmation_token", unique: true, using: :btree
   add_index "mesin_users", ["email"], name: "index_mesin_users_on_email", unique: true, using: :btree
   add_index "mesin_users", ["reset_password_token"], name: "index_mesin_users_on_reset_password_token", unique: true, using: :btree
+  add_index "mesin_users", ["role"], name: "index_mesin_users_on_role", using: :btree
+  add_index "mesin_users", ["unlock_token"], name: "index_mesin_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "mesin_users", "mesin_roles", column: "role", on_update: :restrict, on_delete: :restrict
 end

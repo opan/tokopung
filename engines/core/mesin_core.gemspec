@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency "ckeditor"
   s.add_dependency "carrierwave"
   s.add_dependency "kaminari"
-  s.add_dependency 'bcrypt'
   s.add_dependency "twitter-bootstrap-rails"
   s.add_dependency "less-rails"
   s.add_dependency 'jquery-rails'
