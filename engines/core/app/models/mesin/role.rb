@@ -1,14 +1,13 @@
 module Mesin
   class Role < ActiveRecord::Base
 
-    validates_presence_of :created_at, :updated_at, :role_name
+    validates_presence_of :role_name
     validates :role_name, uniqueness: true, length: {maximum: 50}
 
     has_many :role_users
     has_many :users, through: :role_users, foreign_key: :role_id, primary_key: :id
 
-    before_destroy :it_can_be_deleted?, :check_has_many
-
+    before_destroy :it_can_be_deleted?
 
     class << self
       def super_admin

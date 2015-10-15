@@ -29,7 +29,7 @@ module Mesin
 
     def check_role_users
       if not role_users.exists? role_id: role
-        role_users.create(role_id: role, user_id: id, created_at: DateTime.now, updated_at: DateTime.now)
+        role_users.create(role_id: role, user_id: id)
       end
     end
 
