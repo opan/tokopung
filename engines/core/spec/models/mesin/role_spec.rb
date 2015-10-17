@@ -3,17 +3,17 @@ require "spec_helper"
 module Mesin
   describe Role do
     it "default role super admin test method it_can_be_deleted? must result false" do
-      super_admin = FactoryGirl.create(:role, :super_admin)
+      super_admin = FactoryGirl.build(:role, :super_admin)
       expect(super_admin.it_can_be_deleted?).to eq false 
     end
 
     it "default role admin test method it_can_be_deleted? must result false" do
-      admin = FactoryGirl.create(:role, :admin)
+      admin = FactoryGirl.build(:role, :admin)
       expect(admin.it_can_be_deleted?).to eq false
     end
 
     it "default role customer test method it_can_be_deleted? must result false" do
-      customer = FactoryGirl.create(:role, :customer)
+      customer = FactoryGirl.build(:role, :customer)
       expect(customer.it_can_be_deleted?).to eq false
     end
 
@@ -24,7 +24,7 @@ module Mesin
     end
 
     it "method it_can_be_deleted? should return true if it_can_be_deleted is true" do
-      deleted_role = FactoryGirl.create(:deleted_role)
+      deleted_role = FactoryGirl.build(:deleted_role)
       expect(deleted_role.it_can_be_deleted).to eq true
     end
 
