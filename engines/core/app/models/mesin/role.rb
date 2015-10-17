@@ -30,21 +30,5 @@ module Mesin
         false
       end
     end
-
-    def check_has_many
-      arr_data    = []
-
-      Mesin::Role.reflect_on_all_associations(:has_many).map do |assoc|
-        if assoc.name.to_s.eql? "users"
-          arr_data << [send(assoc.name).table_name, assoc.options[:primary_key]] if !send(assoc.name).empty?
-        end
-      end
-
-      arr_data.each do |a|
-        errors.add(a[1], "is being used in table #{a[0]}")
-      end
-
-      if arr_data.length.eql?(0) then return true else return false end
-    end
   end # end Role
 end
