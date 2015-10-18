@@ -33,6 +33,13 @@ RSpec.configure do |config|
   # include factory_girls gem methods
   config.include FactoryGirl::Syntax::Methods
 
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, remove the following line or assign false
+  # instead of true.
+
+  # if using database_cleaner, set it to false
+  config.use_transactional_fixtures = false
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -102,6 +109,18 @@ RSpec.configure do |config|
 =end
   
   # define how we want database_cleaner to work
+  config.before :suite do
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.before :each do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before :each, :js => true do
+    DatabaseCleaner.strategy = :transaction
+  end
+
   config.before :each do 
     DatabaseCleaner.start
   end
