@@ -15,5 +15,8 @@ module Mesin
       expect(FactoryGirl.build(:user, email: nil)).not_to be_valid
     end
 
+    it "" do
+    end
+
   end # end describe User
 end

@@ -18,6 +18,7 @@ require "capybara"
 require "database_cleaner"
 require "devise"
 require "pundit"
+# require "guard-rspec"
 
 module Mesin
   module Core
