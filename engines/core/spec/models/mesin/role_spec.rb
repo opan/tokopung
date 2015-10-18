@@ -63,5 +63,15 @@ module Mesin
     it "role_name must exists" do
       expect {FactoryGirl.create(:nil_role_name)}.to raise_error
     end
+
+    it ":roles have many :users through :role_users" do
+      super_admin = FactoryGirl.create(:role, :super_admin)
+      expect {super_admin.users}.not_to raise_error
+    end
+
+    it ":roles have many :role_users" do
+      super_admin = FactoryGirl.create(:role, :super_admin)
+      expect {super_admin.role_users}.not_to raise_error
+    end
   end # end describe Role
 end
