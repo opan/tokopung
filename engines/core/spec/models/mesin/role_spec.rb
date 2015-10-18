@@ -37,5 +37,13 @@ module Mesin
     it "role can't more than 50 char" do
       expect {FactoryGirl.create(:role, role_name: [*1..100].join("-"))}.to raise_error
     end
+
+    it "method :still_used_by_user? must return false if users not empty" do
+      FactoryGirl.create(:role, :customer)
+      super_admin = FactoryGirl.create(:role, :super_admin)
+      user = FactoryGirl.create(:user, :valid_email, role: super_admin.id)
+
+      expect(super_admin.still_used_by_user?).to eq false
+    end
   end # end describe Role
 end

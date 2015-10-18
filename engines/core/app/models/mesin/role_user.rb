@@ -1,7 +1,7 @@
 module Mesin
   class RoleUser < ActiveRecord::Base
 
-    validates_presence_of :role_id, :user_id, :users, :roles
+    validates_presence_of :role_id, :user_id, :user, :role
     validates_numericality_of :role_id, :user_id
 
     validates_uniqueness_of :user_id, scope: [:role_id]

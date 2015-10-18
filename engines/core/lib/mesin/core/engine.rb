@@ -40,6 +40,10 @@ module Mesin
         g.fixture_replacement :factory_girl, :dir => "spec/factories"
       end
 
+      if Rails.env.eql? "test"
+        config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+      end
+
       # load our mesin views to default paths, to make shorten call for rendering views
       # ex: "dashboard/index" instead of "mesin/dashboard/index"
       paths["app/views"] << "app/views/mesin"
