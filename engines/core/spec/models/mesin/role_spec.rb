@@ -45,5 +45,23 @@ module Mesin
 
       expect(super_admin.still_used_by_user?).to eq false
     end
+
+    it "role can't be destroyed if still used by user" do
+      FactoryGirl.create(:role, :customer)
+      super_admin = FactoryGirl.create(:role, :super_admin, it_can_be_deleted: true)
+      user = FactoryGirl.create(:user, :valid_email, role: super_admin.id)
+      super_admin.destroy
+      
+      expect {super_admin.reload}.not_to raise_error
+    end
+
+    it "role_name must unique" do
+      FactoryGirl.create(:role, :super_admin)
+      expect {FactoryGirl.create(:role, :super_admin)}.to raise_error
+    end
+
+    it "role_name must exists" do
+      expect {FactoryGirl.create(:nil_role_name)}.to raise_error
+    end
   end # end describe Role
 end
