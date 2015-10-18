@@ -33,5 +33,9 @@ module Mesin
       deleted_role.destroy
       expect {deleted_role.reload}.to raise_error
     end
-  end  
+
+    it "role can't more than 50 char" do
+      expect {FactoryGirl.create(:role, role_name: [*1..100].join("-"))}.to raise_error
+    end
+  end # end describe Role
 end
