@@ -11,7 +11,7 @@ module Mesin
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
     has_many :roles, through: :role_users, foreign_key: :user_id, primary_key: :id
 
-    before_create :create_default_user
+    before_create :role_super_admin_if_table_blank?
     before_validation :set_default_role
     after_save :check_role_users
 
@@ -20,7 +20,7 @@ module Mesin
       self.role ||= Mesin::Role.customer.id  
     end
 
-    def create_default_user
+    def role_super_admin_if_table_blank?
       # if table user still empty, create default user with 'super_admin' role
       if not Mesin::User.exists?
         self.role = Mesin::Role.super_admin.id  
