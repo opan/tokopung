@@ -28,6 +28,7 @@ module Mesin
     end
 
     def check_role_users
+      # check if already have a record with same role_id
       if not role_users.exists? role_id: role
         role_users.create(role_id: role, user_id: id)
       end
