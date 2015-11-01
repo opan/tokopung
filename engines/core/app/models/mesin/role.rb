@@ -5,7 +5,7 @@ module Mesin
     validates :role_name, uniqueness: true, length: {maximum: 50}
 
     has_many :role_users
-    has_many :users, through: :role_users, foreign_key: :role_id, primary_key: :id
+    has_many :users, through: :role_users, foreign_key: :role_id
 
     before_destroy :it_can_be_deleted?, :still_used_by_user?
 

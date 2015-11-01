@@ -9,7 +9,8 @@ module Mesin
     validates :email, uniqueness: true, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
 
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
-    has_many :roles, through: :role_users, foreign_key: :user_id, primary_key: :id
+    has_many :roles, through: :role_users, foreign_key: :user_id
+    has_one :profile, foreign_key: :user_id # every user have one profile to setup
 
     before_create :role_super_admin_if_table_blank?
     before_validation :set_default_role
