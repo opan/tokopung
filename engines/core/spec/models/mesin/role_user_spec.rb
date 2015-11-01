@@ -3,9 +3,9 @@ require "spec_helper"
 module Mesin
   describe RoleUser do
     before do
-      @role_customer = FactoryGirl.create(:role, :customer)
-      @role_super_admin = FactoryGirl.create(:role, :super_admin)
-      @user = FactoryGirl.create(:user, :valid_email)
+      @role_customer = create(:role, :customer)
+      @role_super_admin = create(:role, :super_admin)
+      @user = create(:user, :valid_email)
     end
 
     it "role users belongs_to user" do
