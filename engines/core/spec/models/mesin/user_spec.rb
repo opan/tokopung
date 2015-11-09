@@ -59,5 +59,8 @@ module Mesin
       end
     end
 
+    it "user have one profile" do
+    end
+
   end # end describe User
 end

@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 module Mesin
-  RSpec.describe Profile, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+  describe Profile, type: :model do
+    it ":username can't be blank" do
+      # create(:user, :super_admin)
+      
+    end    
   end
-end
+end # end module Mesin

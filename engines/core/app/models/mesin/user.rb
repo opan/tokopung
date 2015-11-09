@@ -34,6 +34,5 @@ module Mesin
         role_users.create(role_id: role, user_id: id)
       end
     end
-
   end # end class User
 end

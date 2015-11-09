@@ -8,6 +8,10 @@
       .form-group
         = f.label :email, "E-Mail", class: "control-label"
         = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Your E-Mail"
+      = fields_for :profile, resource.profile do |profile_field|
+        .form-group
+          = profile_field.label :username, "Username", class: "control-label"
+          = profile_field.text_field :username, class: "form-control", placeholder: "Choose your Username"
       .form-group
         = f.label :password, class: "control-label"
         = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Input your password", "aria-describedby"=>"validatable_help"
