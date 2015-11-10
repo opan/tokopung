@@ -5,6 +5,7 @@ module Mesin
 
     layout :choose_layout
     before_action :authenticate_user!
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
     protected
 
@@ -14,6 +15,10 @@ module Mesin
         "mesin/authentication"
       end
 
+    end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) << :role
     end
   end # end ApplicationController
 end
