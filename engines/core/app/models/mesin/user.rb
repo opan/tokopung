@@ -10,7 +10,7 @@ module Mesin
 
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
     has_many :roles, through: :role_users, foreign_key: :user_id
-    has_one :profile # every user have one profile to setup
+    has_one :profile, dependent: :destroy # every user have one profile to setup
     accepts_nested_attributes_for :profile
 
     before_create :role_super_admin_if_table_blank?
