@@ -1,12 +1,19 @@
 module Mesin
   class Profile < ActiveRecord::Base
-    belongs_to :users, foreign_key: :user_id
+    belongs_to :user
 
-    validates_presence_of :profile_id, :user_id, :username
-    validates_numericality_of :profile_id, :user_id
-    validates_uniqueness_of :profile_id
+    validates_presence_of :username
+    # validates_numericality_of :mesin_user_id
 
     validates :username, length: {maximum: 100}
     validates :fullname, length: {maximum: 255}
+
+    before_create :test
+
+    def test
+      debugger
+      p "opan"
+    end
+
   end
 end

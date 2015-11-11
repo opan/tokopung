@@ -10,7 +10,7 @@ module Mesin
 
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
     has_many :roles, through: :role_users, foreign_key: :user_id
-    has_one :profile, foreign_key: :user_id # every user have one profile to setup
+    has_one :profile # every user have one profile to setup
     accepts_nested_attributes_for :profile
 
     before_create :role_super_admin_if_table_blank?
@@ -18,6 +18,7 @@ module Mesin
     after_save :check_role_users
 
     def set_default_role
+      debugger
       # set default role as "customer" if empty
       self.role ||= Mesin::Role.customer.id  
     end
