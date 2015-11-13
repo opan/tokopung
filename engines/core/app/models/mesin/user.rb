@@ -18,7 +18,6 @@ module Mesin
     after_save :check_role_users
 
     def set_default_role
-      debugger
       # set default role as "customer" if empty
       self.role ||= Mesin::Role.customer.id  
     end
