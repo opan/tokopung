@@ -11,18 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101095400) do
+ActiveRecord::Schema.define(version: 20151220154920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "mesin_profiles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "username",   limit: 100,              null: false
-    t.string   "fullname",               default: ""
+    t.integer  "user_id",                              null: false
+    t.string   "username",    limit: 100,              null: false
+    t.string   "fullname",                default: ""
     t.date     "birthdate"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "websites",    limit: 100
+    t.string   "homephone",   limit: 12
+    t.string   "mobilephone", limit: 12
+    t.string   "address",     limit: 350
   end
 
   add_index "mesin_profiles", ["user_id"], name: "index_mesin_profiles_on_user_id", using: :btree
@@ -74,7 +78,6 @@ ActiveRecord::Schema.define(version: 20151101095400) do
   add_index "mesin_users", ["role"], name: "index_mesin_users_on_role", using: :btree
   add_index "mesin_users", ["unlock_token"], name: "index_mesin_users_on_unlock_token", unique: true, using: :btree
 
-  add_foreign_key "mesin_profiles", "mesin_users", column: "user_id"
   add_foreign_key "mesin_role_users", "mesin_roles", column: "role_id"
   add_foreign_key "mesin_role_users", "mesin_users", column: "user_id"
 end
