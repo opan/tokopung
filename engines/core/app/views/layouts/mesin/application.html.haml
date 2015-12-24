@@ -61,7 +61,11 @@
             %li= link_to "Dashboard", '#'
             %li.active= link_to "Account", '#'
             %li= link_to "Purchase History", '#'
-            %li= link_to "Notifications", '#'
+            %li
+              = link_to '#' do
+                Notifications 
+                %span.badge.hidden-xs.hidden-sm 42
+            %li= link_to "Settings", '#'
             %li= link_to "Back to Main Page", '#'
 
         / end left column
