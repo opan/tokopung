@@ -1,31 +1,100 @@
 !!!
-%html
+%html{lang: "en"}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    - # semua value meta tag, akan bisa di setup (dinamis)
+    %link{rel: "icon", href: "", type: "image/jpg"}
+
+    %meta{name: "description", content: ""}
+    %meta{name: "author", content: ""}
+    %meta{name: "keywords", content: ""}
+
+    %meta{property: "og:title", content: ""}
+    - # biasanya berisi articel, website, blog
+    %meta{property: "og:type", content: "articel"}
+    - # link/url image, usahakan berbentuk kotak
+    %meta{property: "og:image", content: ""}
+    - # url website/sumber
+    %meta{property: "og:url", content: "tokopung.com"}
+    %meta{property: "og:description", content: ""}
+
+    - # default value adalah summary
+    %meta{name: "twitter:card", content: "summary"}
+    %meta{name: "twitter:url", content: ""}
+    %meta{name: "twitter:description", content: ""}
+    - # usahakan gambar berbentuk kotak dan tidak kurang dari 60x60px
+    %meta{name: "twitter:image", content: ""}
+
     %title Tokopung
+
     = stylesheet_link_tag    'mesin/application', media: 'all'
     = javascript_include_tag 'mesin/application'
     = csrf_meta_tags
-  %body
-    .navbar.navbar-default.fixed-top
+  %body.body-navbar-fixed-top
+    %nav.navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
-          = button_tag nil, class: "navbar-toggle collapsed", data: {toggle: "collapse", target: "#navbar_collapse", "aria-expanded"=> false} do
-            %span.sr-only
-              Toggle Navigation
-          - 3.times do 
-            .icon-bar
+          = link_to "Tokopung", '#', class: "navbar-brand navbar-link"
+          = button_tag nil, data: {toggle: "collapse", target: "#navcol_1"}, type: "button", class: "navbar-toggle collapsed" do
+            %span.sr-only 
+            - 3.times do 
+              %span.icon-bar
 
-          = link_to "TokoPung", mesin.root_path, class: "navbar-brand"
-        .collapse.navbar-collapse#navbar_collapse
-          %ul.navbar-nav.nav
-            %li= link_to "Log out", mesin.destroy_user_session_path, method: :delete, confirm: "Are you sure?"
-    .container-fluid{role: "main"}
-      - # if we dont do this, flash_message will be load lately
-      - content_for :flash_message do
-        = flash_message
+        .collapse.navbar-collapse#navcol_1
+          %p.text-justify.navbar-text.hidden-xs#username_navbar 
+            Hi, Opan
 
-      = yield :flash_message
-      .jumbotron
-        = yield
+          %ul.nav.navbar-nav.navbar-right
+            %li{role: "presentation"}
+              = link_to mesin.destroy_user_session_path, method: :delete, confirm: "Are you sure?" do
+                Log out
+                %span.fa.fa-sign-out
+    / end navbar
 
+    / start container
+    .container
+      .row.clearfix
+        / start left column
+        .col-lg-4.col-md-3.col-sm-3.scroll-col
+          %ul.nav.nav-pills.nav-stacked
+            %li= link_to "Dashboard", '#'
+            %li.active= link_to "Account", '#'
+            %li= link_to "Purchase History", '#'
+            %li= link_to "Notifications", '#'
+            %li= link_to "Back to Main Page", '#'
+
+        / end left column
+
+        / start center column
+        .col-lg-8.col-md-9.col-md-offset-0.col-sm-9.scroll-col
+          .row.clearfix
+            = yield
+            
+
+        / end center column
+
+    / end container
+
+  / %body
+  /   .navbar.navbar-default.fixed-top
+  /     .container
+  /       .navbar-header
+  /         = button_tag nil, class: "navbar-toggle collapsed", data: {toggle: "collapse", target: "#navbar_collapse", "aria-expanded"=> false} do
+  /           %span.sr-only
+  /             Toggle Navigation
+  /         - 3.times do 
+  /           .icon-bar
+
+  /         = link_to "TokoPung", mesin.root_path, class: "navbar-brand"
+  /       .collapse.navbar-collapse#navbar_collapse
+  /         %ul.navbar-nav.nav
+  /           %li= link_to "Log out", mesin.destroy_user_session_path, method: :delete, confirm: "Are you sure?"
+  /   .container-fluid{role: "main"}
+  /     - # if we dont do this, flash_message will be load lately
+  /     - content_for :flash_message do
+  /       = flash_message
+
+  /     = yield :flash_message
+  /     .jumbotron
+  /       = yield

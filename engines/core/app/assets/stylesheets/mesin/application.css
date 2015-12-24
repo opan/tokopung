@@ -13,7 +13,7 @@
  * DISABLE REQUIRE_TREE
  * require_tree .
  *= require_self
- *= require mesin/bootstrap.min
+ *= require mesin/fonts
  *= require mesin/bootstrap_and_overrides
  *= require mesin/core
  */

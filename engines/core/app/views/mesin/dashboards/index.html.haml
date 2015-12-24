@@ -1,2 +1,16 @@
-%h1 Dashboards#index
-%p Find me in app/views/mesin/dashboards/index.html.haml
+.col-lg-9.col-md-8.col-sm-8
+  .page-header
+    %h3 Profile
+
+  / start form profile
+  = form_for :profile, remote: true, html: {id: "form_profile", class: "form-horizontal"} do |f|
+    .form-group
+      = f.label :username, "Username",class: "control-label col-md-3 col-sm-3 col-lg-3"
+      .col-sm-9.col-md-9.col-lg-8 
+        = f.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username"
+
+    .form-group
+      = f.label :fullname, "Fullname",class: "control-label col-md-3 col-sm-3 col-lg-3"
+      .col-sm-9.col-md-9.col-lg-8 
+        = f.text_field :fullname, class: "form-control", autocomplete: "on", required: true, placeholder: "Fullname"
+  / end form profile
