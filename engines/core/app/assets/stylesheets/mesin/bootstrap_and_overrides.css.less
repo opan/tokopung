@@ -1,7 +1,7 @@
 // comment default file bootstrap.css dari gem bootstrap-rails
 // karena sudah menggunakan file hasil dari mockup
 @import "twitter/bootstrap/bootstrap";
-// @import (css) "bootstrap.min.css";
+// @import (css) "bootstrap.css";
 
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
@@ -78,7 +78,7 @@
 @container-tablet: ((720px + @grid-gutter-width));
 @container-desktop: ((940px + @grid-gutter-width));
 @container-large-desktop: ((1140px + @grid-gutter-width));
-@navbar-height: 48px;
+@navbar-height: 67px;
 @navbar-default-color: @text-color;
 @navbar-default-bg: rgb(78, 93, 108);
 @navbar-default-border: transparent;
@@ -100,7 +100,6 @@
 @nav-tabs-border-color: transparent;
 @nav-tabs-active-link-hover-border-color: @table-border-color;
 @nav-tabs-justified-link-border-color: @table-border-color;
-// @nav-link-hover-bg: @well-bg;
 @pagination-bg: @well-bg;
 @pagination-border: transparent;
 @pagination-hover-border: transparent;
@@ -154,6 +153,17 @@
 @close-text-shadow: none;
 
 
+// Opan start
+// @nav-link-hover-bg: @well-bg;
+@link-color: @brand-primary;
+@dropdown-link-color: @text-color;
+@dropdown-link-color-hover: @text-color;
+@jumbotron-bg: @well-bg;
+
+@state-success-text: @brand-success;
+@state-info-text: @brand-info;
+@state-warning-text: @brand-warning;
+@state-danger-text: @brand-danger;
 /*
 .navbar-brand, 
 .navbar-nav li a {
@@ -170,4 +180,5 @@
   font-size: 16px;
   line-height: 2;
 }
+
 */

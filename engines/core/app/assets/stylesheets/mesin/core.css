@@ -1,9 +1,12 @@
 .full-height-jumbotron .jumbotron {height: 100%;}
 .body-navbar-fixed-top{
-  padding-top:50px;
+  padding-top:70px;
 }
 
 .scroll-col{
   overflow-y:auto;
 }
 
+.fixed-col{
+  position: fixed;
+}
