@@ -1,7 +1,10 @@
 Mesin::Core::Engine.routes.draw do
+
   namespace :admin do
-  get 'dashboards/index'
+    resources :dashboards, only: :index 
+    resources :accounts, only: :index 
   end
+
 
   # if install Devise inside an Engine,
   # make sure to add 'module: :devise' to tell Devise that we're running inside en Engine

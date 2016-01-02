@@ -29,7 +29,7 @@
     %title Tokopung
 
     = stylesheet_link_tag    'mesin/application', media: 'all'
-    = javascript_include_tag 'mesin/application'
+    
     = csrf_meta_tags
   %body.body-navbar-fixed-top
     %nav.navbar.navbar-default.navbar-fixed-top
@@ -78,27 +78,6 @@
 
         / end center column
 
+    / load js in the end on body tag to improve loading performances
+    = javascript_include_tag 'mesin/application'
     / end container
-
-  / %body
-  /   .navbar.navbar-default.fixed-top
-  /     .container
-  /       .navbar-header
-  /         = button_tag nil, class: "navbar-toggle collapsed", data: {toggle: "collapse", target: "#navbar_collapse", "aria-expanded"=> false} do
-  /           %span.sr-only
-  /             Toggle Navigation
-  /         - 3.times do 
-  /           .icon-bar
-
-  /         = link_to "TokoPung", mesin.root_path, class: "navbar-brand"
-  /       .collapse.navbar-collapse#navbar_collapse
-  /         %ul.navbar-nav.nav
-  /           %li= link_to "Log out", mesin.destroy_user_session_path, method: :delete, confirm: "Are you sure?"
-  /   .container-fluid{role: "main"}
-  /     - # if we dont do this, flash_message will be load lately
-  /     - content_for :flash_message do
-  /       = flash_message
-
-  /     = yield :flash_message
-  /     .jumbotron
-  /       = yield
