@@ -35,7 +35,7 @@
     %nav.navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
-          = link_to "Tokopung", '#', class: "navbar-brand navbar-link"
+          = link_to "Tokopung", mesin.admin_dashboards_path, class: "navbar-brand navbar-link"
           = button_tag nil, data: {toggle: "collapse", target: "#navcol_1"}, type: "button", class: "navbar-toggle collapsed" do
             %span.sr-only 
             - 3.times do 
@@ -58,8 +58,8 @@
         / start left column
         .col-lg-4.col-md-3.col-sm-3
           %ul.nav.nav-pills.nav-stacked
-            %li= link_to "Dashboard", '#'
-            %li.active= link_to "Account", '#'
+            %li= link_to "Dashboard", mesin.admin_dashboards_path
+            %li.active= link_to "Account", mesin.admin_accounts_path
             %li= link_to "Purchase History", '#'
             %li
               = link_to '#' do

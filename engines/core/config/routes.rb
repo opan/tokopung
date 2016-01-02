@@ -10,5 +10,5 @@ Mesin::Core::Engine.routes.draw do
   # make sure to add 'module: :devise' to tell Devise that we're running inside en Engine
   devise_for :users, class_name: "Mesin::User", module: :devise, controllers: {registrations: "mesin/registrations"}
   
-  root to: "dashboards#index"
+  root to: "admin/dashboards#index"
 end
