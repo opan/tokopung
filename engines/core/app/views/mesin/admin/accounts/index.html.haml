@@ -3,31 +3,36 @@
     %h3 Profile
 
   - # start form profile
-  = form_for :form_profile, remote: true, html: {id: "form_profile", class: "form-horizontal"} do |f|
-    .form-group
-      = f.label :username, "Username",class: "control-label col-md-3 col-sm-3 col-lg-3"
-      .col-sm-9.col-md-9.col-lg-8 
-        = f.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username"
+  = form_for @current_user, as: :form_profile, remote: true, url: "", html: {id: "form_profile", class: "form-horizontal"} do |f|
+    = f.fields_for :profile, @current_user.profile do |profile_user|
+      .form-group
+        = profile_user.label :username, "Username",class: "control-label col-md-3 col-sm-3 col-lg-3"
+        .col-sm-9.col-md-9.col-lg-8 
+          = profile_user.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username"
 
-    .form-group
-      = f.label :fullname, "Fullname",class: "control-label col-md-3 col-sm-3 col-lg-3"
-      .col-sm-9.col-md-9.col-lg-8 
-        = f.text_field :fullname, class: "form-control", autocomplete: "on", required: true, placeholder: "Fullname"
+      .form-group
+        = profile_user.label :fullname, "Fullname",class: "control-label col-md-3 col-sm-3 col-lg-3"
+        .col-sm-9.col-md-9.col-lg-8 
+          = profile_user.text_field :fullname, class: "form-control", autocomplete: "on", required: true, placeholder: "Fullname"
 
-    .form-group
-      = f.label :birthdate, "Birthdate",class: "control-label col-md-3 col-sm-3 col-lg-3"
-      .col-sm-9.col-md-9.col-lg-8 
-        = f.text_field :birthdate, class: "form-control", autocomplete: "on", required: true, placeholder: "Birthdate"
+      .form-group
+        = profile_user.label :birthdate, "Birthdate",class: "control-label col-md-3 col-sm-3 col-lg-3"
+        .col-sm-9.col-md-9.col-lg-8 
+          .input-group.date#birthdate_input_group
+            = profile_user.text_field :birthdate, class: "form-control", autocomplete: "on", required: true, placeholder: "Birthdate"
+            %span.input-group-addon
+              %i.fa.fa-calendar
 
-    .form-group
-      = f.label :home_phone, "Home Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
-      .col-sm-9.col-md-9.col-lg-8 
-        = f.text_field :home_phone, class: "form-control", autocomplete: "on", required: true, placeholder: "Home Phone"
 
-    .form-group
-      = f.label :mobile_phone, "Mobile Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
-      .col-sm-9.col-md-9.col-lg-8 
-        = f.text_field :mobile_phone, class: "form-control", autocomplete: "on", required: true, placeholder: "Mobil Phone"    
+      .form-group
+        = profile_user.label :homephone, "Home Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
+        .col-sm-9.col-md-9.col-lg-8 
+          = profile_user.text_field :homephone, class: "form-control", autocomplete: "on", required: true, placeholder: "Home Phone"
+
+      .form-group
+        = profile_user.label :mobilephone, "Mobile Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
+        .col-sm-9.col-md-9.col-lg-8 
+          = profile_user.text_field :mobilephone, class: "form-control", autocomplete: "on", required: true, placeholder: "Mobil Phone"    
 
     .form-group
       .col-sm-9.col-md-9.col-lg-8.col-md-offset-3.col-sm-offset-3.col-lg-offset-3

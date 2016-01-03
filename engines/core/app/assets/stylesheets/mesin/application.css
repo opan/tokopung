@@ -16,4 +16,5 @@
  *= require mesin/fonts
  *= require mesin/bootstrap_and_overrides
  *= require mesin/core
+ *= require mesin/bootstrap-datepicker3
  */

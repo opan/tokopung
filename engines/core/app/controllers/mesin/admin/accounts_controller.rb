@@ -1,8 +1,7 @@
-require_dependency "mesin/application_controller"
-
 module Mesin
   class Admin::AccountsController < ApplicationController
     def index
+      @current_user = current_user
     end
   end
 end
