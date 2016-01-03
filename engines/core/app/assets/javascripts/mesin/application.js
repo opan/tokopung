@@ -9,3 +9,5 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require mesin/bootstrap-datepicker
+//= require mesin/jquery.validate
+//= require mesin/additional-methods

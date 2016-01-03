@@ -8,11 +8,11 @@ window.adm_account = {
       console.log "masuk"
       return false;
 
+    # datepicker field birthday
     $("#birthdate_input_group").datepicker
       format: "dd MM yyyy"
       autoclose: true
       todayHighlight: true
-      
 
     return
 
