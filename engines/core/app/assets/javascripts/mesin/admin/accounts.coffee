@@ -4,9 +4,10 @@
 
 window.adm_account = {
   onload: ->
-    $("#form_profile").submit (e)->
-      console.log "masuk"
+    $("#form_profile").data("validator").settings.submitHandler = (form)->
+      console.log form
       return false;
+
 
     # datepicker field birthday
     $("#birthdate_input_group").datepicker

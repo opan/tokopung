@@ -29,6 +29,7 @@
     %title Tokopung
 
     = stylesheet_link_tag    'mesin/application', media: 'all'
+    = stylesheet_link_tag    params[:controller], media: 'all' if asset_exists? params[:controller]
     
     = csrf_meta_tags
   %body.body-navbar-fixed-top
@@ -80,4 +81,5 @@
 
     / load js in the end on body tag to improve loading performances
     = javascript_include_tag 'mesin/application'
+    = javascript_include_tag params[:controller] if asset_exists? params[:controller]
     / end container

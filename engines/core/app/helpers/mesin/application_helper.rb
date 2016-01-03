@@ -1,11 +1,7 @@
 module Mesin
   module ApplicationHelper
-    def flash_message
-      
-    end
-
-    def flash_classes
-      
+    def asset_exists? asset_path
+      Rails.application.assets.find_asset asset_path
     end
   end # end ApplicationHelper
 end # end Mesin

@@ -33,6 +33,10 @@ module Mesin
         end
       end # end :append_migrations
 
+      initializer "core.assets.precompile" do |app|
+        app.config.assets.precompile += %w( *.coffee *.js *.css *.scss)
+      end
+
       # setting up Core engine generators
       config.generators do |g|
         g.template_engine :haml
