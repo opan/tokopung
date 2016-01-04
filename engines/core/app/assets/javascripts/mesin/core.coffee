@@ -1,4 +1,5 @@
 window.core = {
+
   onload: ->
     
     $.validator.setDefaults

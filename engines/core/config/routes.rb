@@ -2,8 +2,12 @@ Mesin::Core::Engine.routes.draw do
 
   namespace :admin do
     resources :dashboards, only: :index 
-    resources :accounts, only: :index 
-  end
+    resources :accounts, only: :index do
+      collection do
+        put :update_profile
+      end
+    end # end resources :accounts
+  end # end namespace :admin
 
 
   # if install Devise inside an Engine,

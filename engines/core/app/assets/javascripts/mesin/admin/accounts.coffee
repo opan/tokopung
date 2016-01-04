@@ -4,6 +4,7 @@
 
 window.adm_account = {
   onload: ->
+    # override default settings 
     $("#form_profile").data("validator").settings.submitHandler = (form)->
       console.log form
       return false;

@@ -82,4 +82,5 @@
     / load js in the end on body tag to improve loading performances
     = javascript_include_tag 'mesin/application'
     = javascript_include_tag params[:controller] if asset_exists? params[:controller]
+    .modal-loader
     / end container
