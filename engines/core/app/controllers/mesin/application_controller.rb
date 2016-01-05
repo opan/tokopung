@@ -4,16 +4,27 @@ module Mesin
     include Pundit
 
     layout :choose_layout
-    before_action :authenticate_user!
+    before_action :authenticate_user!, :set_default_instance_variable
+
+    def render_json
+      render json: {msg: @msg, status: @status, res_data: @res_data}
+    end
+
+    private
+
+      def set_default_instance_variable
+        @status = "success"
+      end
 
     protected
 
-    def choose_layout
-      # if sign in or sign up use 'authentication' layout
-      if devise_controller? and (controller_name.eql? "sessions" or controller_name.eql? "registrations")
-        "mesin/authentication"
+      def choose_layout
+        # if sign in or sign up use 'authentication' layout
+        if devise_controller? and (controller_name.eql? "sessions" or controller_name.eql? "registrations")
+          "mesin/authentication"
+        end
+
       end
 
-    end
   end # end ApplicationController
 end

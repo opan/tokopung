@@ -39,6 +39,14 @@ window.core = {
 
     $.validator.addMethod "commaseparated", commaseparated, 'Input value separated by commas.'
 
+    $(document).on({
+      ajaxStart: ->
+        $("body").addClass "loading"
+        return
+      ajaxStop: ->
+        $("body").removeClass "loading"
+        return
+    })
 
     return
 }

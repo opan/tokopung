@@ -6,7 +6,15 @@ window.adm_account = {
   onload: ->
     # override default settings 
     $("#form_profile").data("validator").settings.submitHandler = (form)->
-      console.log form
+      $.ajax
+        url: "/admin/accounts/update_profile"
+        method: "put"
+        data: $('#form_profile').serialize()
+        done: (data)->
+          console.log data
+        error: (xhr, statusText, errorThrown)->
+          console.log statusText  
+
       return false;
 
 

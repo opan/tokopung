@@ -1,10 +1,11 @@
+#data_account{data: {update_profile: update_profile_admin_accounts_path}}
 .col-lg-9.col-md-8.col-sm-8
   .page-header
     %h3 Profile
 
   - # start form profile
   = form_for @current_user, as: :form_profile, remote: true, url: "", html: {id: "form_profile", class: "form-horizontal"} do |f|
-    = f.fields_for :profile, @current_user.profile do |profile_user|
+    = f.fields_for :profile do |profile_user|
       .form-group
         = profile_user.label :username, "Username",class: "control-label col-md-3 col-sm-3 col-lg-3"
         .col-sm-9.col-md-9.col-lg-8 
