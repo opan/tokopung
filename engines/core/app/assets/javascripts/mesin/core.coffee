@@ -2,6 +2,7 @@ window.core = {
 
   onload: ->
     
+    # start jquery.validation rules, methods, options, etc.
     $.validator.setDefaults
       errorPlacement: (error, element)->
         if element.parent(".input-group").length
@@ -38,7 +39,9 @@ window.core = {
       @.optional element || /^([a-z]+)(,\s*[a-z]+)*$/.test(value)
 
     $.validator.addMethod "commaseparated", commaseparated, 'Input value separated by commas.'
+    # stop jquery.validation rules, methods, options, etc.
 
+    # start setup ajax event
     $(document).on({
       ajaxStart: ->
         $("body").addClass "loading"
@@ -46,7 +49,12 @@ window.core = {
       ajaxStop: ->
         $("body").removeClass "loading"
         return
+      ajaxSuccess: (event, xhr, settings)->
+        # get JSON response
+        console.log xhr.responseJSON
+        return
     })
+    # stop setup ajax event
 
     return
 }
