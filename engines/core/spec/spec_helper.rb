@@ -4,6 +4,7 @@ require File.expand_path("../../../../config/environment", __FILE__)
 require "rspec/rails"
 require "factory_girl_rails"
 require "database_cleaner"
+require "devise"
 
 # set the ENGINE_ROOT_RAILS variable
 ENGINE_ROOT_RAILS = File.join(File.dirname(__FILE__), "../")
@@ -32,7 +33,9 @@ Dir[File.join(ENGINE_ROOT_RAILS, "spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   # include factory_girls gem methods
   config.include FactoryGirl::Syntax::Methods
-
+  config.include Devise::TestHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
+  config.infer_spec_type_from_file_location!
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

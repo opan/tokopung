@@ -13,7 +13,7 @@ module Mesin
     private
 
       def set_default_instance_variable
-        @status = "success"
+        @status = SUCCESS
       end
 
     protected

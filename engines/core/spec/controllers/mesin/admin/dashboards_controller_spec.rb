@@ -1,14 +1,47 @@
-require 'rails_helper'
+require 'spec_helper'
 
 module Mesin
-  RSpec.describe Admin::DashboardsController, type: :controller do
+  describe Admin::DashboardsController do
+    set_engine_routes
+    
+    context "signed out" do
+ 
+      describe "GET #index" do
+        it "does not have a current_user" do
+          expect(subject.current_user).to be_nil
+        end
 
-    describe "GET #index" do
-      it "returns http success" do
-        get :index
-        expect(response).to have_http_status(:success)
+        it "redirect the user to login page" do
+          get :index
+          expect(subject).to redirect_to new_user_session_path
+        end
       end
-    end
+
+    end # context "signed out"
+
+    context "super admin" do
+      login_super_admin 
+ 
+      describe "GET #index" do
+        it "has current_user" do 
+          expect(subject.current_user).not_to be_nil
+        end
+
+        it "has current_user is super admin" do
+          expect(subject.current_user.roles.super_admin).to be_valid
+        end
+  
+        it "should get :index" do
+          get :index
+          expect(response).to be_success
+        end
+
+        it "renders :index view" do
+          get :index
+          expect(response).to render_template :index
+        end
+      end
+    end # context "super admin"
 
   end
 end

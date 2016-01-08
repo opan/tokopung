@@ -1,7 +1,7 @@
-require 'rails_helper'
+require 'spec_helper'
 
 module Mesin
-  RSpec.describe RegistrationsController, type: :controller do
-
+  describe RegistrationsController, type: :controller do
+    
   end
 end

@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave"
   s.add_dependency "kaminari"
   s.add_dependency "twitter-bootstrap-rails"
-  s.add_dependency "less-rails"
+  # s.add_dependency 'less-rails', github: 'metaskills/less-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'therubyracer'
   s.add_dependency 'sass-rails'
