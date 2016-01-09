@@ -12,6 +12,7 @@ module Mesin
         @msg        = current_user.errors.full_messages
         @status     = FAILS
       end
+      
       render_json
     end
 

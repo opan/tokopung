@@ -6,7 +6,6 @@ module ControllerMacros
       @customer = create(:role, :customer)
       
       user = create(:user, :valid_email)
-      user.confirm!
       user.create_profile(username: "super admin")
       sign_in user 
     end 
@@ -21,7 +20,6 @@ module ControllerMacros
       admin.create_profile(username: "super admin")
 
       user = create(:user, :valid_email)
-      user.confirm!
       user.create_profile(username: "user")
       sign_in user
     end    
