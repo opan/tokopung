@@ -43,5 +43,29 @@ module Mesin
       end
     end # context "super admin"
 
+    context "user" do
+      login_user
+ 
+      describe "GET #index" do
+        it "has current_user" do
+          expect(subject.current_user).to be_valid
+        end
+
+        it "has current_user is customer/user" do
+          expect(subject.current_user.roles.customer).to be_valid
+        end
+
+        it "should get :index" do
+          get :index 
+          expect(response).to be_success
+        end
+
+        it "renders :index view" do
+          get :index
+          expect(response).to render_template :index
+        end
+      end
+    end # context "user"
+ 
   end
 end

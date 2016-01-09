@@ -1,14 +1,31 @@
 module ControllerMacros
   def login_super_admin
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env["devise.mapping"] = Devise.mappings[:admin]
       @super_admin = create(:role, :super_admin)
       @customer = create(:role, :customer)
+      
       user = create(:user, :valid_email)
       user.confirm!
+      user.create_profile(username: "super admin")
       sign_in user 
     end 
   end # login_admin
+
+  def login_user
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @super_admin = create(:role, :super_admin)
+      @customer = create(:role, :customer)
+      admin = create(:super_admin)
+      admin.create_profile(username: "super admin")
+
+      user = create(:user, :valid_email)
+      user.confirm!
+      user.create_profile(username: "user")
+      sign_in user
+    end    
+  end
 
   def set_engine_routes
     before(:each) do

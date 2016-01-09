@@ -16,5 +16,9 @@ module Mesin
         email nil
       end
     end
+
+    factory :super_admin, parent: :user do |f|
+      email "super@admin.com"
+    end
   end # end FactoryGirl
 end
