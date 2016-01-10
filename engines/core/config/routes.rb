@@ -5,6 +5,7 @@ Mesin::Core::Engine.routes.draw do
     resources :accounts, only: :index do
       member do
         put :update_profile
+        post :add_user_emails
       end
     end # end resources :accounts
     

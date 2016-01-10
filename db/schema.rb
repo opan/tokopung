@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160110030756) do
   create_table "mesin_emails", force: :cascade do |t|
     t.string   "email",      limit: 100, null: false
     t.integer  "user_id"
+    t.string   "status",     limit: 20
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

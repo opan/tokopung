@@ -12,7 +12,7 @@ module Mesin
     has_many :roles, through: :role_users, foreign_key: :user_id
     has_many :emails, foreign_key: :user_id, dependent: :destroy
     has_one :profile, dependent: :destroy # every user have one profile to setup
-    accepts_nested_attributes_for :profile
+    accepts_nested_attributes_for :profile, :emails
 
     before_create :role_super_admin_if_table_blank?
     before_validation :set_default_role
@@ -39,7 +39,7 @@ module Mesin
 
     def create_default_emails
       if emails.blank?
-        emails.create(email: email)
+        emails.create(email: email, status: "primary")
       end
     end
   end # end class User

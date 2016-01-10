@@ -64,6 +64,11 @@ module Mesin
         user = create(:user, :valid_email)
         expect(user.emails.exists?).to eql true
       end
+
+      it "status is primary" do
+        user = create(:user, :valid_email)
+        expect(user.emails.first.status).to eql "primary" 
+      end 
     end
 
   end # end describe User

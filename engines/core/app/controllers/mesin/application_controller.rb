@@ -10,6 +10,14 @@ module Mesin
       render json: {msg: @msg, status: @status, res_data: @res_data}
     end
 
+    def respond_format
+      respond_to do |format|
+        format.json {render_json}
+        format.html 
+        format.js
+      end
+    end
+
     private
 
       def set_default_instance_variable

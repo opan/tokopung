@@ -1,0 +1,9 @@
+- current_user.emails.each do |email|
+  .form-group
+    .col-md-6.col-sm-6.col-xs-8
+      %span.label.label-default
+        = email.email
+
+    .col-md-4.col-sm-2
+      %span.label.label-success
+        = email.status.capitalize

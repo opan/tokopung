@@ -17,7 +17,7 @@ module Mesin
         it "success create additional email " do
           @user.emails.create(email: "additional@email.com")
           expect(@user.emails.where(email: "additional@email.com").exists?).to eql true
-        end 
+        end
       end
 
       context "if email invalid" do

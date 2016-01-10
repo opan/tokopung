@@ -42,18 +42,14 @@ window.core = {
     # stop jquery.validation rules, methods, options, etc.
 
     # start setup ajax event
-    $(document).on({
+    $(document).on
       ajaxStart: ->
         $("body").addClass "loading"
         return
       ajaxStop: ->
         $("body").removeClass "loading"
         return
-      ajaxSuccess: (event, xhr, settings)->
-        # get JSON response
-        console.log xhr.responseJSON
-        return
-    })
+
     # stop setup ajax event
 
     return

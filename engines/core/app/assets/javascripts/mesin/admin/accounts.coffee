@@ -10,8 +10,8 @@ window.adm_account = {
       autoclose: true
       todayHighlight: true
 
-    return
 
+    return
 }
 
 
