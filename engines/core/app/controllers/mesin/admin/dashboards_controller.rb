@@ -1,8 +1,7 @@
-require_dependency "mesin/application_controller"
-
 module Mesin
   class Admin::DashboardsController < ApplicationController
-    def index
+    before_action do |c|
+      authorize current_user
     end
   end
 end
