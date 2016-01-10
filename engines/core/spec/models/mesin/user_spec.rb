@@ -59,7 +59,11 @@ module Mesin
       end
     end
 
-    it "user have one profile" do
+    describe "#create_default_emails" do
+      it "default email is exists" do
+        user = create(:user, :valid_email)
+        expect(user.emails.exists?).to eql true
+      end
     end
 
   end # end describe User
