@@ -4,9 +4,10 @@ module Mesin
     include Pundit
 
     layout :choose_layout
-    before_action :authenticate_user!, :set_default_instance_variable
-    # verify all controller is already authorized by Pundit
-    after_action :verify_authorized
+    before_action :authenticate_user!
+    # Globally rescue Authorization Errors in controller.
+    # Returning 403 Forbidden if permission is denied
+    rescue_from Pundit::NotAuthorizedError, with: :permission_denied
 
     def render_json
       render json: {msg: @msg, status: @status, res_data: @res_data}
@@ -20,12 +21,6 @@ module Mesin
       end
     end
 
-    private
-
-      def set_default_instance_variable
-        @status = SUCCESS
-      end
-
     protected
 
       def choose_layout
@@ -34,6 +29,10 @@ module Mesin
           "mesin/authentication"
         end
 
+      end
+
+      def permission_denied
+        head 403
       end
 
   end # end ApplicationController

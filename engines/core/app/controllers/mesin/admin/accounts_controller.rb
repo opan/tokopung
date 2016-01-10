@@ -1,5 +1,8 @@
 module Mesin
   class Admin::AccountsController < ApplicationController
+    # verify controller is it already authorized by Pundit
+    after_action :verify_authorized
+    
     before_action do |c|
       authorize current_user
     end
@@ -7,6 +10,7 @@ module Mesin
     def update_profile
       if current_user.update_attributes(permit_params)
         @msg        = "Your profile successfully updated."
+        @status     = SUCCESS
       else
         @msg        = current_user.errors.full_messages
         @status     = FAILS
@@ -18,6 +22,7 @@ module Mesin
     def add_user_emails
       if current_user.update_attributes(permit_params)
         @msg        = "Your email successfully added"
+        @status     = SUCCESS
       else
         @msg        = current_user.errors.full_messages
         @status     = FAILS
