@@ -15,10 +15,6 @@ module Mesin
       respond_format
     end
 
-    def reload_list_email
-      
-    end
-
     def add_user_emails
       if current_user.update_attributes(permit_params)
         @msg        = "Your email successfully added"
