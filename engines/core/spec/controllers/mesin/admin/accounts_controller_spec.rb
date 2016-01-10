@@ -19,41 +19,37 @@ module Mesin
     end # describe "GET #index"
 
     describe "PUT #:id/update_profile" do
+      
       context "with valid data" do
-        it "update profile user" do
+        it "success update profile user" do
           params = {profile_attributes: {username: "opan berhasil"}}
-          put :update_profile, id: subject.current_user.id, form_profile: params
+          put :update_profile, id: subject.current_user.id, account: params, format: :js
           compare_name = "opan berhasil"
-
+          # expect(response).to render_template "update_profile.js.coffee"
           expect(subject.current_user.profile.username).to eql "opan berhasil"  
         end
-
-        it "renders json with status 'success'" do
+ 
+        it "render update_profile.js.coffee" do 
           params = {profile_attributes: {username: "opan berhasil"}}
-          put :update_profile, id: subject.current_user.id, form_profile: params
-          compare_name = "opan berhasil"
-          @expected_response = {status: "success"}
-          @response = JSON.parse(response.body)
-          expect(@response["status"]).to eql "success"
+          put :update_profile, id: subject.current_user.id, account: params, format: :js
+          expect(response).to render_template "update_profile"
         end
         
       end
 
       context "with invalid data" do
-        it "update profile user" do
+        it "fails update profile user" do
           params = {profile_attributes: {username: nil}}
-          put :update_profile, id: subject.current_user.id, form_profile: params
+          put :update_profile, id: subject.current_user.id, account: params, format: :js
           subject.current_user.reload
           expect(subject.current_user.profile.username).not_to eql nil  
         end
 
-        it "renders json with status 'fails'" do
+        it "render update_profile.js.coffee" do
           params = {profile_attributes: {username: nil}}
-          put :update_profile, id: subject.current_user.id, form_profile: params
+          put :update_profile, id: subject.current_user.id, account: params, format: :js
 
-          @expected_response = {status: "fails"}
-          @response = JSON.parse(response.body)
-          expect(@response["status"]).to eql "fails"
+          expect(response).to render_template "update_profile"
         end
       end
     end # describe "PUT #update_profile"

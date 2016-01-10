@@ -28,5 +28,15 @@ module Mesin
       end
     end
 
+    describe "#check_email_status" do
+      context "if already default email" do
+        it "status must be 'secondary'" do
+          @user.emails.create(email: "additional@email.com")
+          expect(@user.emails.where(email: "additional@email.com", status: "secondary").exists?).to eql true
+        end
+      end
+    end
+
+
   end
 end
