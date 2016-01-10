@@ -59,10 +59,10 @@
         %span Add Email Address
 
       = form_for current_user, as: :account, url: add_user_emails_admin_account_path(current_user) ,remote: true, html: {id: "form_add_email", class: "form-horizontal", method: :post} do |f|
-        = f.fields_for :emails do |email|
+        = fields_for :emails do |email|
           .form-group
             .col-md-8.col-lg-8.col-sm-8.col-xs-8
-              = email.email_field :email, class: "form-control", placeholder: "Type your new email."
+              = email.email_field :email, class: "form-control", placeholder: "Type your new email.", name: "account[emails_attributes][1][email]"
             .col-md-4.col-lg-4.col-sm-4
               = email.button "Add", class: "btn btn-primary"
         

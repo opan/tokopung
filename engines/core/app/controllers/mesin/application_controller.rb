@@ -5,6 +5,8 @@ module Mesin
 
     layout :choose_layout
     before_action :authenticate_user!, :set_default_instance_variable
+    # verify all controller is already authorized by Pundit
+    after_action :verify_authorized
 
     def render_json
       render json: {msg: @msg, status: @status, res_data: @res_data}

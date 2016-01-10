@@ -1,9 +1,14 @@
-- current_user.emails.each do |email|
+- current_user.emails.each_with_index do |email, index|
   .form-group
     .col-md-6.col-sm-6.col-xs-8
       %span.label.label-default
         = email.email
 
-    .col-md-4.col-sm-2
-      %span.label.label-success
-        = email.status.capitalize
+    = form_for email, as: :change_user_email, url: change_user_emails_admin_account_path(email),  remote: true, html: {id: "change_user_email_#{index}"} do |f|
+      .col-md-4.col-sm-2
+        - if email.status.eql? "primary"
+          %span.label.label-success
+            = email.status.capitalize
+        - else
+          %span.label.label-warning
+            = email.status.capitalize
