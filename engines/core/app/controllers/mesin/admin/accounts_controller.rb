@@ -1,14 +1,10 @@
 module Mesin
   class Admin::AccountsController < ApplicationController
-    # skip_after_action :verify_authorized, only: :index
-
-    def index
+    before_action do |c|
       authorize current_user
     end
 
     def update_profile
-      authorize current_user
-
       if current_user.update_attributes(permit_params)
         @msg        = "Your profile successfully updated."
       else
@@ -31,11 +27,11 @@ module Mesin
     end
 
     def update_user_emails
-      authorize current_user
+      
     end
 
     def delete_user_emails
-      authorize current_user
+      
     end
 
     private
