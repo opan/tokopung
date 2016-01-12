@@ -1,7 +1,6 @@
 # load engine dependencies
 require "haml-rails"
 require "pg"
-require "twitter-bootstrap-rails"
 require "less-rails"
 require "sass-rails"
 require "therubyracer"
@@ -34,7 +33,8 @@ module Mesin
       end # end :append_migrations
 
       initializer "core.assets.precompile" do |app|
-        app.config.assets.precompile += %w( *.coffee *.js *.css *.scss)
+        app.config.assets.precompile += %w( *.coffee *.js *.css *.scss *.eot
+                                          *.svg *.ttf *.woff *.woff2 *.otf)
       end
 
       # setting up Core engine generators

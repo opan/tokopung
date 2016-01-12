@@ -6,7 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require mesin/bootstrap.min
 // disable require_tree
 // require_tree .
 //= require mesin/bootstrap-datepicker
