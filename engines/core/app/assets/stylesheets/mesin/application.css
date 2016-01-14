@@ -15,5 +15,6 @@
  *= require_self
  *= require mesin/fonts
  *= require mesin/core
+ *= require mesin/custom
  *= require mesin/bootstrap-datepicker3
  */

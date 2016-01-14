@@ -1,14 +1,25 @@
 - current_user.emails.each_with_index do |email, index|
-  .form-group
-    .col-md-6.col-sm-6.col-xs-8
+  .row
+    .col-lg-6.col-md-6.col-sm-6.col-xs-6
       %span.label.label-default
         = email.email
 
-    = form_for email, as: :change_user_email, url: change_user_emails_admin_account_path(email),  remote: true, html: {id: "change_user_email_#{index}"} do |f|
-      .col-md-4.col-sm-2
-        - if email.status.eql? "primary"
-          %span.label.label-success
-            = email.status.capitalize
-        - else
-          %span.label.label-warning
-            = email.status.capitalize
+    / = form_for email, as: :change_user_email, url: change_user_emails_admin_account_path(email),  remote: true, html: {id: "change_user_email_#{index}"} do |f|
+    .col-lg-2.col-md-2.col-sm-3.col-xs-3
+      - if email.status.eql? "primary"
+        %span.label.label-success
+          = email.status.capitalize
+      - else
+        %span.label.label-warning
+          = email.status.capitalize
+    .col-lg-2.col-md-2.col-sm-3.col-xs-3
+      .row
+        .col-md-4.col-sm-3.col-xs-3
+          %span.fa-stack.fa-sm
+            %span.fa.fa-circle.fa-stack-2x.fa-inverse
+            %span.fa.fa-pencil.fa-stack-1x.fa-sm.text-success
+
+        .col-md-6.col-sm-3.col-xs-3
+          %span.fa-stack.fa-sm
+            %span.fa.fa-circle.fa-stack-2x.fa-inverse
+            %span.fa.fa-close.fa-stack-1x.fa-sm.text-danger
