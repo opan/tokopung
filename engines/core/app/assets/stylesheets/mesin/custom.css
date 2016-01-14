@@ -1,0 +1,35 @@
+/*****************************
+  Custom css start from here
+******************************/
+.body-navbar-fixed-top{
+  padding-top:70px;
+}
+
+.scroll-col{
+  overflow-y:auto;
+}
+
+.fixed-col{
+  position: fixed;
+}
+
+.modal-loader {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(155, 155, 145, 0.61) url('/assets/mesin/ajax-loader.GIF') 50% 50% no-repeat;
+}   
+
+body.loading {
+  overflow: hidden;
+}
+
+body.loading .modal-loader {
+  display: block;
+}
+
+
