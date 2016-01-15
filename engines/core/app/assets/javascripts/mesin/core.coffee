@@ -52,6 +52,9 @@ window.core = {
 
     # stop setup ajax event
 
+
+    # setup tooltip bootstrap
+    $("[data-toggle='tooltip']").tooltip()
     return
 }
 

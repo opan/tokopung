@@ -58,7 +58,7 @@
     .container
       .row.clearfix
         / start left column
-        .col-lg-4.col-md-3.col-sm-3
+        .col-lg-3.col-md-3.col-sm-3
           %ul.nav.nav-pills.nav-stacked
             %li= link_to "Dashboard", mesin.admin_dashboards_path
             %li.active= link_to "Account", mesin.admin_accounts_path
@@ -73,7 +73,7 @@
         / end left column
 
         / start center column
-        .col-lg-8.col-md-9.col-md-offset-0.col-sm-9
+        .col-lg-9.col-md-9.col-md-offset-0.col-sm-9
           .row.clearfix
             = yield
             

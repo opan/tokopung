@@ -32,4 +32,6 @@ body.loading .modal-loader {
   display: block;
 }
 
-
+.label-email{
+  margin-right: 4px;
+}
