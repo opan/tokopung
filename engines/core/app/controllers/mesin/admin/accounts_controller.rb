@@ -31,12 +31,17 @@ module Mesin
       respond_format
     end
 
-    def update_user_emails
-      
-    end
+    def delete_user_email
+      email         = Email.find(params[:id])
+      if email.destroy
+        @msg        = "Your email successfully destroyed."
+        @status     = SUCCESS
+      else
+        @msg        = email.errors.full_messages
+        @status     = FAILS
+      end
 
-    def delete_user_emails
-      
+      respond_format
     end
 
     private

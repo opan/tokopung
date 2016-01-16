@@ -6,7 +6,6 @@ Mesin::Core::Engine.routes.draw do
       member do
         put :update_profile
         post :add_user_emails
-        put :change_user_emails, to: "accounts#update_user_email"
         delete :change_user_emails, to: "accounts#delete_user_email"
       end
     end # end resources :accounts

@@ -11,6 +11,19 @@ window.adm_account = {
       todayHighlight: true
 
 
+    $(document).on "click", ".delete-email", (e)->
+      email_id = $(@).data "email-id"
+      $.ajax
+        url: "/admin/accounts/#{email_id}/change_user_emails"
+        type: "delete"
+        dataType: "script"
+      return
+      
+
+    # untuk tooltip
+    $("#div_email_settings").tooltip
+      selector: ".delete-email"
+
     return
 }
 

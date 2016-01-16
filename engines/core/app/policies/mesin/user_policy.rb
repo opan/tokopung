@@ -18,5 +18,13 @@ module Mesin
     def add_user_emails?
       user.present?
     end
+
+    def delete_user_email?
+      user.present?
+    end
+
+    def update_user_email?
+      user.present?
+    end
   end
 end
