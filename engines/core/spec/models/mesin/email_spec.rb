@@ -28,15 +28,23 @@ module Mesin
       end
     end
 
-    describe "#check_email_status" do
+    describe "#check_email_label" do
       context "if already default email" do
-        it "status must be 'secondary'" do
+        it "label must be 'secondary'" do
           @user.emails.create(email: "additional@email.com")
-          expect(@user.emails.where(email: "additional@email.com", status: "secondary").exists?).to eql true
+          expect(@user.emails.where(email: "additional@email.com", label: "secondary").exists?).to eql true
         end
       end
     end
 
+    describe "#check_user_emails" do
+      context "if user only have one email" do
+        it "cancel deleting email" do
+          
+          expect {@user.emails.destroy_all}.to raise_error ActiveRecord::RecordNotDestroyed
+        end
+      end
+    end
 
   end
 end

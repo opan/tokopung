@@ -10,7 +10,7 @@ module Mesin
 
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
     has_many :roles, through: :role_users, foreign_key: :user_id
-    has_many :emails, foreign_key: :user_id, dependent: :destroy
+    has_many :emails, foreign_key: :user_id, dependent: :delete_all # using :delete to skip :before_destroy callback in Email
     has_one :profile, dependent: :destroy # every user have one profile to setup
     accepts_nested_attributes_for :profile, :emails
 
@@ -39,7 +39,7 @@ module Mesin
 
     def create_default_emails
       if emails.blank?
-        emails.create(email: email, status: "primary")
+        emails.create(email: email, label: "primary")
       end
     end
   end # end class User

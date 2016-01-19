@@ -3,7 +3,7 @@ class CreateMesinEmails < ActiveRecord::Migration
     create_table :mesin_emails do |t|
       t.string :email, limit: 100, null: false
       t.belongs_to :user, index: true
-      t.string :status, limit: 20
+      t.string :label, limit: 20
       t.timestamps null: false
     end
 

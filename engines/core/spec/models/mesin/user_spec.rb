@@ -29,7 +29,7 @@ module Mesin
     it "user have many role_users dependent on destroy" do
       user = create(:user, :valid_email)
       user.destroy
-
+ 
       expect(user.role_users).to be_empty
     end
 
@@ -65,9 +65,9 @@ module Mesin
         expect(user.emails.exists?).to eql true
       end
 
-      it "status is primary" do
+      it "label is primary" do
         user = create(:user, :valid_email)
-        expect(user.emails.first.status).to eql "primary" 
+        expect(user.emails.first.label).to eql "primary" 
       end 
     end
 
