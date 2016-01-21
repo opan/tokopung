@@ -20,7 +20,7 @@ window.adm_account = {
       return
       
 
-    # untuk tooltip
+    # untuk tooltip email
     $("#div_email_settings").tooltip
       selector: ".delete-email"
 

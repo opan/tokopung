@@ -35,3 +35,10 @@ body.loading .modal-loader {
 .label-email{
   margin-right: 4px;
 }
+
+.row-email {
+  border-bottom: 1px solid;
+  padding: 5px;
+  border-bottom-color: #4e5d6c;
+  margin: 2px;
+}
