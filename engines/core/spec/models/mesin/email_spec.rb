@@ -44,6 +44,14 @@ module Mesin
           expect {@user.emails.destroy_all}.to raise_error ActiveRecord::RecordNotDestroyed
         end
       end
+
+      context "if user more than one email" do
+        it "success deleting email" do
+          @user.emails.create(email: "test@rspec.com")
+
+          expect(@user.emails.where(email: "test@rspec.com").take.destroy).to be_valid
+        end
+      end
     end
 
   end
