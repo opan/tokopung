@@ -74,21 +74,21 @@
         Change your password. Make sure your new password is correct because this
         action can not be undo.
 
-      = form_for :form_change_password, remote: true, html: {id: "form_change_password", class: "form-horizontal"} do |f|
+      = form_for current_user, as: :account, remote: true, url: update_password_admin_account_path(current_user), html: {id: "form_change_password", class: "form-horizontal", method: :patch} do |f|
         .form-group
-          = f.label :old_password, "Old Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          = label_tag :current_password, "Old Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
           .col-sm-8.col-md-8.col-lg-8
-            = f.password_field :old_password, class: "form-control", placeholder: "Type your current password.", required: true
+            = password_field_tag :current_password, nil, class: "form-control", placeholder: "Type your current password.", required: true
 
         .form-group
-          = f.label :new_password, "New Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          = f.label :password, "New Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
           .col-sm-8.col-md-8.col-lg-8
-            = f.password_field :new_password, class: "form-control", placeholder: "Type your new password.", required: true
+            = f.password_field :password, class: "form-control", placeholder: "Type your new password.", required: true
 
         .form-group
-          = f.label :confirm_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          = f.label :password_confirmation, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
           .col-sm-8.col-md-8.col-lg-8
-            = f.password_field :confirm_password, class: "form-control", placeholder: "Confirm your new password.", required: true
+            = f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your new password.", required: true
 
         .form-group
           .col-sm-8.col-md-8.col-lg-8.col-sm-offset-4.col-md-offset-4.col-lg-offset-4

@@ -23,7 +23,7 @@ module Mesin
       user.present?
     end
 
-    def update_user_email?
+    def update_password?
       user.present?
     end
   end

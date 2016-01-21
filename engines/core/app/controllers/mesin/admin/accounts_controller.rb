@@ -44,10 +44,26 @@ module Mesin
       respond_format
     end
 
+    def update_password
+
+      if current_user.valid_password? params[:current_password]
+        if current_user.update_attributes(permit_params)
+          @msg      = "Password has successfully changed"
+
+        else
+          @msg      = current_user.errors.full_messages
+        end
+      else
+        @msg        = "Invalid password. Make sure for type correctly."
+      end
+
+      respond_format
+    end
+
     private
 
       def permit_params
-        params.require(:account).permit(:email, :role, 
+        params.require(:account).permit(:email, :role, :password, :password_confirmation,
           profile_attributes: [:username, :fullname, :birthdate, :homephone, :mobilephone, :id],
           emails_attributes: [:email, :status, :id]
         )
