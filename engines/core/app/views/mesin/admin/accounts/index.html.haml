@@ -105,9 +105,30 @@
             this action can not be undo. But before you confirm deleting your account,
             system will ask you for last time to confirm if you is the real owner of
             this account and reassure you want to delete your account.
-          = button_tag "Delete Account", class: "btn btn-danger", id: "btn_delete_account"
+          
+          = button_tag "Delete Account", class: "btn btn-danger", data: {toggle: "modal", target: "#modal_delete_account"}
+
+
   - # end form security
 .col-lg-3.col-md-4.col-sm-4.hidden-xs
   = image_tag "mesin/images.jpg", alt: "Gambar sample", class: "img-rounded img-responsive"
   .text-center
     = link_to "Change Avatar", '#'
+
+#modal_delete_account.modal.fade{tabindex: "-1", role: "dialog"}
+  .modal-dialog
+    .modal-content
+      = form_for current_user, as: :account, url: delete_account_admin_account_path(current_user), html: {id: "form_delete_account", method: :delete} do |f|
+        .modal-header
+          %h4 Delete Account Confirmation
+
+        .modal-body
+          .form-horizontal
+            .form-group
+              = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+              .col-sm-8.col-md-8.col-lg-8
+                = password_field_tag :current_password, nil, class: "form-control", placeholder: "Confirm password.", required: true
+        
+        .modal-footer
+          = f.button "Cancel", class: "btn btn-primary btn-sm", id: "btn_cancel_delete_account", data: {dismiss: "modal"}
+          = f.button "Delete", class: "btn btn-danger btn-sm", id: "btn_delete_account"

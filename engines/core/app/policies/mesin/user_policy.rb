@@ -26,5 +26,9 @@ module Mesin
     def update_password?
       user.present?
     end
+
+    def delete_account?
+      user.present?
+    end
   end
 end

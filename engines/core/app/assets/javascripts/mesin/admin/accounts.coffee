@@ -4,6 +4,10 @@
 
 window.adm_account = {
   onload: ->
+    # untuk tooltip email
+    $("#div_email_settings").tooltip
+      selector: ".delete-email"
+
     # datepicker field birthday
     $("#birthdate_input_group").datepicker
       format: "dd MM yyyy"
@@ -20,9 +24,9 @@ window.adm_account = {
       return
       
 
-    # untuk tooltip email
-    $("#div_email_settings").tooltip
-      selector: ".delete-email"
+    # $("#btn_delete_account").on "click", (e)->
+    #   alert "opan"
+    #   return false
 
     return
 }

@@ -125,6 +125,34 @@ module Mesin
       end
     end
 
+    describe "DELETE #id/delete_account" do
+      context "if current_password password valid" do
+        context "if success destroyed user" do
+          it "redirect_to index account" do
+            delete :delete_account, current_password: "12345678", id: subject.current_user.id
+
+            expect(response).to redirect_to admin_accounts_path
+          end
+
+          it " and status is 'success'" do
+            delete :delete_account, current_password: "12345678", id: subject.current_user.id
+
+            expect(assigns(:status)).to eql "success"
+          end
+        end
+      end
+
+      context "if current_password password invalid" do
+        it "message is \"Invalid password. Make sure for type correctly.\"" do
+          delete :delete_account, current_password: "9999", id: subject.current_user.id
+          expect(assigns(:msg)).to eql "Invalid password. Make sure for type correctly."
+        end
+        it "and redirect_to index account panel " do
+          delete :delete_account, current_password: "9999", id: subject.current_user.id
+          expect(response).to redirect_to admin_accounts_path
+        end
+      end
+    end
 
   end
 end

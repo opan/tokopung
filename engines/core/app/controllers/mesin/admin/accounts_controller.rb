@@ -49,15 +49,32 @@ module Mesin
       if current_user.valid_password? params[:current_password]
         if current_user.update_attributes(permit_params)
           @msg      = "Password has successfully changed"
-
+          @status   = SUCCESS
         else
           @msg      = current_user.errors.full_messages
+          @status   = FAILS
         end
       else
         @msg        = "Invalid password. Make sure for type correctly."
+        @status     = FAILS
       end
 
       respond_format
+    end
+
+    def delete_account
+      if current_user.valid_password? params[:current_password]
+        current_user.destroy
+        @msg      = "Your account successfully destroyed."
+        @status   = SUCCESS
+      else
+        @msg        = "Invalid password. Make sure for type correctly."
+        @status     = SUCCESS
+
+      end
+
+      redirect_to admin_accounts_url, notice: @msg
+      
     end
 
     private
