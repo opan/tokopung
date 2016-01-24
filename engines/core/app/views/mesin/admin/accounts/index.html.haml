@@ -1,7 +1,7 @@
 
 .col-lg-9.col-md-8.col-sm-8
   .page-header
-    %h3 Profile
+    %h3 Profile asu
 
   - # start form profile
   = form_for current_user, as: :account, remote: true, url:  update_profile_admin_account_path(current_user), html: {id: "form_profile", class: "form-horizontal", method: :put} do |f|

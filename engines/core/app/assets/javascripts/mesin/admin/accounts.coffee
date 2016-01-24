@@ -27,7 +27,7 @@ window.adm_account = {
     # $("#btn_delete_account").on "click", (e)->
     #   alert "opan"
     #   return false
-
+    console.log "test"
     return
 }
 

@@ -14,3 +14,9 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 gem 'less-rails', github: 'metaskills/less-rails'
 
+group :development do
+  gem "guard"
+  gem "guard-coffeescript"
+  gem "guard-less"
+  gem "guard-livereload"
+end
