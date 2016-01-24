@@ -73,8 +73,7 @@ module Mesin
 
       end
 
-      redirect_to admin_accounts_url, notice: @msg
-      
+      redirect_to admin_accounts_url, notice: @msg      
     end
 
     private

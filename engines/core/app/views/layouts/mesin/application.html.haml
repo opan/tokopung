@@ -60,8 +60,8 @@
         / start left column
         .col-lg-3.col-md-3.col-sm-3
           %ul.nav.nav-pills.nav-stacked
-            %li= link_to "Dashboard", mesin.admin_dashboards_path
-            %li.active= link_to "Account", mesin.admin_accounts_path
+            %li{class: "#{active_menu?(mesin.admin_dashboards_path)}"}= link_to "Dashboard", mesin.admin_dashboards_path
+            %li{class: "#{active_menu?(mesin.admin_accounts_path)}"}= link_to "Account", mesin.admin_accounts_path
             %li= link_to "Purchase History", '#'
             %li
               = link_to '#' do
