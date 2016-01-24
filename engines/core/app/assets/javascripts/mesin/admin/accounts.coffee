@@ -23,11 +23,6 @@ window.adm_account = {
         dataType: "script"
       return
       
-
-    # $("#btn_delete_account").on "click", (e)->
-    #   alert "opan"
-    #   return false
-    console.log "test"
     return
 }
 
