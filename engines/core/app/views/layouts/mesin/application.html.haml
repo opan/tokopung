@@ -45,23 +45,27 @@
 
         .collapse.navbar-collapse#navcol_1
           %p.text-justify.navbar-text.hidden-xs#username_navbar 
-            Hi, Opan
+            Hi,
+            - # username will be Strin#titleize by default
+            = current_user.profile.username.titleize
 
           %ul.nav.navbar-nav.navbar-right
             %li{role: "presentation"}
               = link_to mesin.destroy_user_session_path, method: :delete, confirm: "Are you sure?" do
                 Log out
-                %span.fa.fa-sign-out
     / end navbar
 
     / start container
+
+    
     .container
       .row.clearfix
         / start left column
         .col-lg-3.col-md-3.col-sm-3
           %ul.nav.nav-pills.nav-stacked
-            %li{class: "#{active_menu?(mesin.admin_dashboards_path)}"}= link_to "Dashboard", mesin.admin_dashboards_path
-            %li{class: "#{active_menu?(mesin.admin_accounts_path)}"}= link_to "Account", mesin.admin_accounts_path
+            
+            %li{class: active_menu?(current_page?(mesin.root_path) ? mesin.root_path : mesin.admin_dashboards_path)}= link_to "Dashboard", mesin.admin_dashboards_path
+            %li{class: active_menu?(mesin.admin_accounts_path)}= link_to "Account", mesin.admin_accounts_path
             %li= link_to "Purchase History", '#'
             %li
               = link_to '#' do
