@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110030756) do
+ActiveRecord::Schema.define(version: 20160131080615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20160110030756) do
     t.boolean  "it_can_be_deleted",            default: true, null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.integer  "role_id_parent",               default: 0
+    t.string   "role_title",        limit: 50
   end
 
   add_index "mesin_roles", ["role_name"], name: "index_mesin_roles_on_role_name", unique: true, using: :btree

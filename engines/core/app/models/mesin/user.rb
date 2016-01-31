@@ -20,13 +20,13 @@ module Mesin
 
     def set_default_role
       # set default role as "customer" if empty
-      self.role ||= Mesin::Role.customer.id  
+      self.role ||= Mesin::Role.get_customer.id  
     end
 
     def role_super_admin_if_table_blank?
       # if table user still empty, create default user with 'super_admin' role
       if not Mesin::User.exists?
-        self.role = Mesin::Role.super_admin.id  
+        self.role = Mesin::Role.get_superadmin.id
       end
     end
 
@@ -42,5 +42,32 @@ module Mesin
         emails.create(email: email, label: "primary")
       end
     end
+
+    # override method_missing pada instance_methods
+    # jika tidak sesuai kondisi call 'super', untuk memanggil method_missing yang asli
+    def method_missing method_sym, *args, &block
+      name_string = method_sym.to_s
+      if name_string.match /\Ais_he_an_\w+\?\z/i
+        method_query_is_he_an_prefix name_string
+      else
+        super
+      end
+    end
+
+    # pastikan selalu gunakan juga method "respond_to?" agar tidak terjadi trace error
+    # http://blog.enriquez.me/2010/2/21/dont-forget-about-respond-to-when-implementing-method-missing/
+    def respond_to? method_string, include_private = false
+      if method_string.match /\Ais_he_an_\w+\?\z/i
+        true
+      else
+        super
+      end
+    end
+
+    private 
+      def method_query_is_he_an_prefix method_sym
+        role_name = method_sym.split("is_he_an_")[1].gsub /\?/, ""
+        roles.where(role_name: role_name).exists?
+      end
   end # end class User
 end
