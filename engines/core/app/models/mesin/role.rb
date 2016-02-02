@@ -30,7 +30,7 @@ module Mesin
         if method_string.match /\Aget_/
           true
         else
-          super
+          super(method_string)
         end
       end
 
@@ -42,14 +42,15 @@ module Mesin
         end
     end # end self
 
+    # check if this "role" deleteable
     def it_can_be_deleted?
-      # check if this "role" deleteable
       if not self.it_can_be_deleted
         errors.add(:base, "This role can't be deleted.")
         false
       end
     end
 
+    # jika masih ada user yang memiliki role ybs
     def still_used_by_user?
       false if not self.users.empty?
     end

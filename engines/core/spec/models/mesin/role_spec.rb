@@ -3,81 +3,80 @@ require "spec_helper"
 module Mesin
   describe Role do
     
+    describe "#method_missing" do
+      context "when method_name prefix is 'get_'" do
+        it "respond_to method get_superadmin is true" do
+          expect(Mesin::Role.respond_to?(:get_superadmin)).to eq true
+        end
 
-    context "if :it_can_be_deleted is false" do
-      it "role can not be deleted  and should not raise error when reload" do
-        super_admin = create(:role, :super_admin)
-        super_admin.destroy
-        expect {super_admin.reload}.not_to raise_error
+        it "get the role record coresponding word after get_ prefix" do
+          superadmin = create(:role, :superadmin)
+          expect(superadmin.role_name).to eq "superadmin"
+        end
+      end
+
+      context "when method_name out of condition" do
+        it "raise method_missing" do
+          expect {Mesin::Role.test_invalid_method}.to raise_error NoMethodError
+        end
+      end
+    end
+
+    context "when role_name not passed regex /\A\w+\z/i" do 
+      it "failed create role" do
+        expect {create(:invalid_role_name)}.to raise_error ActiveRecord::RecordInvalid
       end
     end
 
     describe "#it_can_be_deleted?" do
-      context "if :it_can_be_deleted is true" do
-        it "return true" do
-          deleted_role = build(:deleted_role)
-          expect(deleted_role.it_can_be_deleted).to eq true
+      context "when it_can_be_deleted is false" do
+        it "failed destroy role" do
+          superadmin = create(:role, :superadmin)
+          expect(superadmin.destroy).to eq false 
         end
       end
 
-      context "if role 'super_admin'" do
-        it "cannot be deleted" do
-          super_admin = build(:role, :super_admin)
-          expect(super_admin.it_can_be_deleted?).to eq false 
+      context "when it_can_be_deleted is true" do
+        it "success destroy role" do
+          admin = create(:role, :admin)
+          admin.destroy
+          expect(Mesin::Role.get_admin).to be_nil
         end
-      end
-
-      context "if role 'admin'" do
-        it "cannot be deleted" do
-          admin = build(:role, :admin)
-          expect(admin.it_can_be_deleted?).to eq false
-        end
-      end
-
-      context "if role 'customer'" do
-        it "cannot be deleted" do
-          customer = build(:role, :customer)
-          expect(customer.it_can_be_deleted?).to eq false
-        end
-      end
-    end # end describe
-
-    context "if :it_can_be_deleted is true" do
-      it "role can be deleted" do
-        deleted_role = create(:deleted_role)
-        deleted_role.destroy
-        expect {deleted_role.reload}.to raise_error
       end
     end
 
-    it "role can't more than 50 char" do
-      expect {create(:role, role_name: [*1..100].join("-"))}.to raise_error
+
+    context "when role_name more than 50 char" do
+      it "failed create role" do
+        expect {create(:role, role_name: [*1..100].join("-"))}.to raise_error ActiveRecord::RecordInvalid
+      end
     end
+
 
     describe "#still_used_by_user?" do
-      context "if users not empty?" do
+      context "when users not empty?" do
         it "return false" do
           create(:role, :customer)
-          super_admin = create(:role, :super_admin)
-          user = create(:user, :valid_email, role: super_admin.id)
+          superadmin = create(:role, :superadmin)
+          user = create(:user, :valid_email, role: superadmin.id)
 
-          expect(super_admin.still_used_by_user?).to eq false
+          expect(superadmin.still_used_by_user?).to eq false
+        end
+      end
+
+      context "when users empty?" do
+        it "success destroy role" do
+          admin = create(:role, :admin)
+          admin.destroy
+          expect(Mesin::Role.get_admin).to be_nil
         end
       end
     end
 
-    it "role can't be destroyed if still used by user" do
-      create(:role, :customer)
-      super_admin = create(:role, :super_admin, it_can_be_deleted: true)
-      user = create(:user, :valid_email, role: super_admin.id)
-      super_admin.destroy
-      
-      expect {super_admin.reload}.not_to raise_error
-    end
 
     it "role_name must unique" do
-      create(:role, :super_admin)
-      expect {create(:role, :super_admin)}.to raise_error
+      create(:role, :superadmin)
+      expect {create(:role, :superadmin)}.to raise_error
     end
 
     it "role_name must exists" do
@@ -85,13 +84,13 @@ module Mesin
     end
 
     it ":roles have many :users through :role_users" do
-      super_admin = create(:role, :super_admin)
-      expect {super_admin.users}.not_to raise_error
+      superadmin = create(:role, :superadmin)
+      expect {superadmin.users}.not_to raise_error
     end
 
     it ":roles have many :role_users" do
-      super_admin = create(:role, :super_admin)
-      expect {super_admin.role_users}.not_to raise_error
+      superadmin = create(:role, :superadmin)
+      expect {superadmin.role_users}.not_to raise_error
     end
   end # end describe Role
 end

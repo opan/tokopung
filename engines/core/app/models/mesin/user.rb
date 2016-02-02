@@ -18,25 +18,26 @@ module Mesin
     before_validation :set_default_role
     after_save :check_role_users, :create_default_emails
 
+    # set default role as "customer" if empty
     def set_default_role
-      # set default role as "customer" if empty
       self.role ||= Mesin::Role.get_customer.id  
     end
 
+    # if table user still empty, create default user with 'superadmin' role
     def role_super_admin_if_table_blank?
-      # if table user still empty, create default user with 'super_admin' role
       if not Mesin::User.exists?
         self.role = Mesin::Role.get_superadmin.id
       end
     end
 
+    # check if already have a record with same role_id
     def check_role_users
-      # check if already have a record with same role_id
       if not role_users.exists? role_id: role
         role_users.create(role_id: role, user_id: id)
       end
     end
 
+    # create default email di table Emails jika masih kosong
     def create_default_emails
       if emails.blank?
         emails.create(email: email, label: "primary")

@@ -3,27 +3,29 @@ module Mesin
     factory :role, class: "Mesin/Role" do |f|
       f.it_can_be_deleted false
 
-      trait :super_admin do
-        role_name "super_admin"
+      trait :superadmin do
+        role_name "superadmin"
       end
 
       trait :admin do
+        it_can_be_deleted true
         role_name "admin"
       end
 
       trait :customer do
+        it_can_be_deleted true
         role_name "customer"
       end
-    end
-
-    factory :deleted_role, class: "Mesin/Role" do |f|
-      f.it_can_be_deleted true
-      role_name "super_admin"
     end
 
     factory :nil_role_name, class: "Mesin/Role" do |f|
       f.it_can_be_deleted true
       role_name nil
+    end
+
+    factory :invalid_role_name, class: "Mesin/Role" do |f|
+      f.it_can_be_deleted true
+      role_name "1aisudh9()"
     end   
   end # end FactoryGirl
 end
