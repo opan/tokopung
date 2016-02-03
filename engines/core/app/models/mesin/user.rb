@@ -44,6 +44,10 @@ module Mesin
       end
     end
 
+    def generate_unlock_token
+      Devise.token_generator.generate self.class, :unlock_token
+    end
+
     # override method_missing pada instance_methods
     # jika tidak sesuai kondisi call 'super', untuk memanggil method_missing yang asli
     def method_missing method_sym, *args, &block

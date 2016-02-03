@@ -105,5 +105,12 @@ module Mesin
       end
     end
 
+    describe "#generate_unlock_token" do
+      it "generate token for unlock_token field" do
+        user = create(:user, :valid_email)
+        expect(user.generate_unlock_token.length).to eq 2
+      end
+    end
+
   end # end describe User
 end
