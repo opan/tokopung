@@ -3,7 +3,7 @@ require 'spec_helper'
 module Mesin
   describe Email, type: :model do
     before(:each) do
-      @super_admin = create(:role, :super_admin)
+      @superadmin = create(:role, :superadmin)
       @customer = create(:role, :customer)
       @user = create(:super_admin)
     end

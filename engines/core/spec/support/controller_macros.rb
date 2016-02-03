@@ -2,7 +2,7 @@ module ControllerMacros
   def login_super_admin
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:admin]
-      @super_admin = create(:role, :super_admin)
+      @superadmin = create(:role, :superadmin)
       @customer = create(:role, :customer)
       
       user = create(:user, :valid_email)
@@ -14,7 +14,7 @@ module ControllerMacros
   def login_user
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      @super_admin = create(:role, :super_admin)
+      @superadmin = create(:role, :superadmin)
       @customer = create(:role, :customer)
       admin = create(:super_admin)
       admin.create_profile(username: "super admin")

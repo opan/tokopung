@@ -4,7 +4,7 @@ module Mesin
   describe RoleUser do
     before do
       @role_customer = create(:role, :customer)
-      @role_super_admin = create(:role, :super_admin)
+      @role_superadmin = create(:role, :superadmin)
       @user = create(:user, :valid_email)
     end
 

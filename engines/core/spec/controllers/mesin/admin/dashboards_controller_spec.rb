@@ -28,7 +28,7 @@ module Mesin
         end
 
         it "has current_user is super admin" do
-          expect(subject.current_user.roles.super_admin).to be_valid
+          expect(subject.current_user.is_he_an_superadmin?).to eq true
         end
   
         it "should get :index" do
@@ -52,7 +52,7 @@ module Mesin
         end
 
         it "has current_user is customer/user" do
-          expect(subject.current_user.roles.customer).to be_valid
+          expect(subject.current_user.is_he_an_customer?).to eq true
         end
 
         it "should get :index" do

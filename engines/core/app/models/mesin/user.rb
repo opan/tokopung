@@ -14,7 +14,7 @@ module Mesin
     has_one :profile, dependent: :destroy # every user have one profile to setup
     accepts_nested_attributes_for :profile, :emails
 
-    before_create :role_super_admin_if_table_blank?
+    before_create :role_superadmin_if_table_blank
     before_validation :set_default_role
     after_save :check_role_users, :create_default_emails
 
@@ -24,7 +24,7 @@ module Mesin
     end
 
     # if table user still empty, create default user with 'superadmin' role
-    def role_super_admin_if_table_blank?
+    def role_superadmin_if_table_blank
       if not Mesin::User.exists?
         self.role = Mesin::Role.get_superadmin.id
       end
