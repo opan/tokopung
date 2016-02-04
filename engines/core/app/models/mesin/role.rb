@@ -10,7 +10,7 @@ module Mesin
     has_many :role_users
     has_many :users, through: :role_users, foreign_key: :role_id
 
-    before_destroy :it_can_be_deleted?, :still_used_by_user?
+    before_destroy :check_role_is_deletable, :check_still_used_by_user
 
     class << self
       # override method_missing pada methods
@@ -43,7 +43,7 @@ module Mesin
     end # end self
 
     # check if this "role" deleteable
-    def it_can_be_deleted?
+    def check_role_is_deletable
       if not self.it_can_be_deleted
         errors.add(:base, "This role can't be deleted.")
         false
@@ -51,7 +51,7 @@ module Mesin
     end
 
     # jika masih ada user yang memiliki role ybs
-    def still_used_by_user?
+    def check_still_used_by_user
       false if not self.users.empty?
     end
 

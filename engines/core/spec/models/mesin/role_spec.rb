@@ -28,7 +28,7 @@ module Mesin
       end
     end
 
-    describe "#it_can_be_deleted?" do
+    describe "#check_role_is_deletable" do
       context "when it_can_be_deleted is false" do
         it "failed destroy role" do
           superadmin = create(:role, :superadmin)
@@ -53,14 +53,14 @@ module Mesin
     end
 
 
-    describe "#still_used_by_user?" do
+    describe "#check_still_used_by_user" do
       context "when users not empty?" do
         it "return false" do
           create(:role, :customer)
           superadmin = create(:role, :superadmin)
           user = create(:user, :valid_email, role: superadmin.id)
 
-          expect(superadmin.still_used_by_user?).to eq false
+          expect(superadmin.check_still_used_by_user).to eq false
         end
       end
 
