@@ -13,12 +13,13 @@ module Mesin
     has_many :emails, foreign_key: :user_id, dependent: :delete_all # using :delete_all to skip :before_destroy callback in Email
     has_one :profile, dependent: :destroy # every user have one profile to setup
     accepts_nested_attributes_for :profile, :emails
+    validates :profile, presence: true
 
     before_create :role_superadmin_if_table_blank
     before_validation :set_default_role
     after_save :check_role_users, :create_default_emails
 
-    # set default role as "customer" if empty
+    # set default role user dengan default role yang sudah di define di table role
     def set_default_role
       self.role ||= Mesin::Role.default_role.id  
     end
