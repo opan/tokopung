@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204143823) do
+ActiveRecord::Schema.define(version: 20160205152624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,12 +53,13 @@ ActiveRecord::Schema.define(version: 20160204143823) do
   add_index "mesin_role_users", ["role_id", "user_id"], name: "index_mesin_role_users_on_role_id_and_user_id", unique: true, using: :btree
 
   create_table "mesin_roles", force: :cascade do |t|
-    t.string   "role_name",         limit: 50,                null: false
-    t.boolean  "it_can_be_deleted",            default: true, null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.string   "role_name",         limit: 50,                 null: false
+    t.boolean  "it_can_be_deleted",            default: true,  null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "role_id_parent",               default: 0
     t.string   "role_title",        limit: 50
+    t.boolean  "is_default",                   default: false, null: false
   end
 
   add_index "mesin_roles", ["role_name"], name: "index_mesin_roles_on_role_name", unique: true, using: :btree

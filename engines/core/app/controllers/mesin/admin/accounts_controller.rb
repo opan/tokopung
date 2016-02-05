@@ -45,7 +45,7 @@ module Mesin
     end
 
     def update_password
-
+      # before change password, check the old password
       if current_user.valid_password? params[:current_password]
         if current_user.update_attributes(permit_params)
           @msg      = "Password has successfully changed"
@@ -63,6 +63,8 @@ module Mesin
     end
 
     def delete_account
+      # before destroying account, check for current password
+      # if valid then continue destroying account
       if current_user.valid_password? params[:current_password]
         current_user.destroy
         @msg      = "Your account successfully destroyed."
@@ -83,10 +85,6 @@ module Mesin
           profile_attributes: [:username, :fullname, :birthdate, :homephone, :mobilephone, :id],
           emails_attributes: [:email, :status, :id]
         )
-      end
-
-      def params_email
-        params.require(:email).permit(:email, :status)
       end
   end
 end

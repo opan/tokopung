@@ -15,6 +15,7 @@ module Mesin
       trait :customer do
         it_can_be_deleted true
         role_name "customer"
+        is_default true
       end
     end
 

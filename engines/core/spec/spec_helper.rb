@@ -5,6 +5,7 @@ require "rspec/rails"
 require "factory_girl_rails"
 require "database_cleaner"
 require "devise"
+require "pundit/rspec"
 
 # set the ENGINE_ROOT_RAILS variable
 ENGINE_ROOT_RAILS = File.join(File.dirname(__FILE__), "../")

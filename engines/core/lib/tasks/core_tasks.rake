@@ -19,5 +19,5 @@ task :seeding => :environment  do
 
   # create default role "Customer"
   customer = Mesin::Role.create({role_name: "customer", it_can_be_deleted: true, created_at: DateTime.now, updated_at: DateTime.now, 
-    role_id_parent: admin.id, role_title: "Customer"})
+    role_id_parent: admin.id, role_title: "Customer", is_default: true})
 end

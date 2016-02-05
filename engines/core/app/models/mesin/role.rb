@@ -13,6 +13,11 @@ module Mesin
     before_destroy :check_role_is_deletable, :check_still_used_by_user
 
     class << self
+      # class method untuk dapatkan role default
+      def default_role
+        Mesin::Role.where(is_default: true).take
+      end
+
       # override method_missing pada methods
       # jika tidak sesuai kondisi call 'super', untuk memanggil method_missing yang asli
       def method_missing method_sym, *args, &block

@@ -2,7 +2,8 @@ require "spec_helper"
 
 module Mesin
   describe Role do
-    
+    let(:customer){create(:role, :customer)}
+
     describe "#method_missing" do
       context "when method_name prefix is 'get_'" do
         it "respond_to method get_superadmin is true" do
@@ -92,5 +93,12 @@ module Mesin
       superadmin = create(:role, :superadmin)
       expect {superadmin.role_users}.not_to raise_error
     end
+
+    describe "#default_role" do
+      it "customer is default role" do
+        expect(customer.is_default).to eq true
+      end
+    end
+
   end # end describe Role
 end

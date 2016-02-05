@@ -7,18 +7,18 @@
   = form_for current_user, as: :account, remote: true, url:  update_profile_admin_account_path(current_user), html: {id: "form_profile", class: "form-horizontal", method: :put} do |f|
     = f.fields_for :profile do |profile_user|
       .form-group
-        = profile_user.label :username, "Username",class: "control-label col-md-3 col-sm-3 col-lg-3"
-        .col-sm-9.col-md-9.col-lg-8 
+        = profile_user.label :username, "Username",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
           = profile_user.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username", data: {rule_maxlength: 100}
 
       .form-group
-        = profile_user.label :fullname, "Fullname",class: "control-label col-md-3 col-sm-3 col-lg-3"
-        .col-sm-9.col-md-9.col-lg-8 
+        = profile_user.label :fullname, "Fullname",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
           = profile_user.text_field :fullname, class: "form-control", autocomplete: "on",  placeholder: "Fullname", data: {rule_maxlength: 255}
 
       .form-group
-        = profile_user.label :birthdate, "Birthdate",class: "control-label col-md-3 col-sm-3 col-lg-3"
-        .col-sm-9.col-md-9.col-lg-8 
+        = profile_user.label :birthdate, "Birthdate",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
           .input-group.date#birthdate_input_group
             = profile_user.text_field :birthdate, class: "form-control", autocomplete: "on",  placeholder: "Birthdate"
             %span.input-group-addon
@@ -26,17 +26,17 @@
 
 
       .form-group
-        = profile_user.label :homephone, "Home Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
-        .col-sm-9.col-md-9.col-lg-8 
+        = profile_user.label :homephone, "Home Phone",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
           = profile_user.text_field :homephone, class: "form-control", autocomplete: "on",  placeholder: "Home Phone", data: {rule_maxlength: 12}
 
       .form-group
-        = profile_user.label :mobilephone, "Mobile Phone",class: "control-label col-md-3 col-sm-3 col-lg-3"
-        .col-sm-9.col-md-9.col-lg-8 
+        = profile_user.label :mobilephone, "Mobile Phone",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
           = profile_user.text_field :mobilephone, class: "form-control", autocomplete: "on",  placeholder: "Mobil Phone", data: {rule_maxlength: 12}
 
     .form-group
-      .col-sm-9.col-md-9.col-lg-8.col-md-offset-3.col-sm-offset-3.col-lg-offset-3
+      .col-md-9.col-lg-8.col-md-offset-3.col-lg-offset-3
         = f.button "Update Profile", class: "btn btn-primary"
   - # end form profile
   
@@ -94,9 +94,22 @@
 
         .form-group
           .col-sm-8.col-md-8.col-lg-8.col-sm-offset-4.col-md-offset-4.col-lg-offset-4
-            = f.button "Change Password", class: "btn btn-warning"
+            = f.button "Change Password", class: "btn btn-primary"
+
 
       %hr
+      / form Lock Account
+      .panel.panel-warning
+        .panel-heading
+          %h3.panel-title Lock Account
+        .panel-body
+          %p.text-justify.text-warning
+            Locking your account will make you temporarily lost access of your account. This feature really usefull when you not using your account for some time, to make sure no one can't access your account except your self.  This action make you logging out. Make sure your primary email is active. 
+
+          = button_tag "Lock Account", class: "btn btn-warning", data: {toggle: "modal", target: "#modal_lock_account"}
+
+      %hr
+      / form Delete Account
       .panel.panel-danger
         .panel-heading
           %h3.panel-title Delete Account

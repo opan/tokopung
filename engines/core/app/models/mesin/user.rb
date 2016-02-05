@@ -20,7 +20,7 @@ module Mesin
 
     # set default role as "customer" if empty
     def set_default_role
-      self.role ||= Mesin::Role.get_customer.id  
+      self.role ||= Mesin::Role.default_role.id  
     end
 
     # if table user still empty, create default user with 'superadmin' role
