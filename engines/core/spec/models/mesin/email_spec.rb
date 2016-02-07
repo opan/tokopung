@@ -54,5 +54,22 @@ module Mesin
       end
     end
 
+    describe "#only_have_one_primary_email" do
+      context "if user have multiple email" do
+        context "when user set other email into primary email" do
+          it "that new email will be primary email" do
+            @user.emails.create email: "baru@email.com", is_primary: true
+            expect(@user.emails.where(email: "baru@email.com").take.is_primary).to eq true
+          end
+        end
+      end
+
+      context "if user only have one email" do
+        it "that one email must be primary email" do
+          expect(@user.emails.first.is_primary).to eq true
+        end
+      end
+    end
+
   end
 end

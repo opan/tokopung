@@ -5,7 +5,7 @@ module Mesin
     validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     validates :label, length: {maximum: 20}
 
-    before_save :check_email_label
+    before_save :check_email_label, :only_have_one_primary_email
     before_destroy :check_user_emails
 
     # if is_primary = true, then set label to "Primary"
@@ -25,5 +25,23 @@ module Mesin
         false
       end
     end
+
+    # one user only have one primary email (is_primary: true)
+    # update all emails user have into false, then set current is_primary to true 
+    # if user doesn't have primary email and or is_primary false, check first
+    # that users have primary email before, if user doesn't have, then force set current email to true
+    def only_have_one_primary_email
+      if is_primary.eql? true
+        Mesin::Email.update_all(is_primary: false, user_id: user_id)
+        self.is_primary = is_primary
+      else
+        get_primary_email = Mesin::Email.where(is_primary: true, user_id: user_id)
+
+        if get_primary_email.blank?
+          self.is_primary = true
+        end
+      end
+    end
+
   end
 end
