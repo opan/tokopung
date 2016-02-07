@@ -8,7 +8,7 @@ module Mesin
     end
 
     context "when invalid email" do
-      it "cant create user" do
+      it "can't create user" do
         expect(build(:user, :invalid_email)).not_to be_valid
       end
     end
@@ -20,7 +20,7 @@ module Mesin
     end
 
     context "when email nil" do
-      it "cant create user" do
+      it "can't create user" do
         expect(build(:user, email: nil)).not_to be_valid
       end
     end

@@ -9,6 +9,7 @@ Mesin::Core::Engine.routes.draw do
         delete :change_user_emails, to: "accounts#delete_user_email"
         patch :update_password
         delete :delete_account
+        patch :lock_account
       end
     end # end resources :accounts
     

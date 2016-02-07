@@ -6,7 +6,7 @@ module ControllerMacros
       @customer = create(:role, :customer)
       
       user = create(:user, :valid_email)
-      user.create_profile(username: "super admin")
+
       sign_in user 
     end 
   end # login_admin
@@ -17,10 +17,8 @@ module ControllerMacros
       @superadmin = create(:role, :superadmin)
       @customer = create(:role, :customer)
       admin = create(:super_admin)
-      admin.create_profile(username: "super admin")
-
       user = create(:user, :valid_email)
-      user.create_profile(username: "user")
+
       sign_in user
     end    
   end

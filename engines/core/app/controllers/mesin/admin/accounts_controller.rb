@@ -78,6 +78,10 @@ module Mesin
       redirect_to admin_accounts_url, notice: @msg      
     end
 
+    def lock_account
+      
+    end
+
     private
 
       def permit_params

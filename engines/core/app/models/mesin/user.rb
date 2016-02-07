@@ -6,7 +6,7 @@ module Mesin
            :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable # :omniauthable,
            # :timeoutable disable Devise module timeoutable
 
-    validates :email, uniqueness: true, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
+    validates :email, uniqueness: true, presence: true
 
     has_many :role_users, dependent: :destroy # delete "role_users" when "users" destroyed
     has_many :roles, through: :role_users, foreign_key: :user_id
@@ -41,7 +41,7 @@ module Mesin
     # create default email di table Emails jika masih kosong
     def create_default_emails
       if emails.blank?
-        emails.create(email: email, label: "primary")
+        emails.create(email: email, label: "primary", is_primary: true)
       end
     end
 
