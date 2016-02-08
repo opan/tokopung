@@ -70,12 +70,12 @@ module Mesin
         @msg      = "Your account successfully destroyed."
         @status   = SUCCESS
         
-        redirect_to admin_accounts_url, notice: @msg
+        redirect_to mesin.admin_accounts_url, notice: @msg
       else
         @msg        = "Invalid password. Make sure for typing correctly."
         @status     = SUCCESS
 
-        redirect_to admin_accounts_url, error: @msg
+        redirect_to mesin.admin_accounts_url, error: @msg
       end
 
     end
@@ -84,15 +84,16 @@ module Mesin
       # before locking account, check current password user
       # if valid then continue locking account, send confirmation_token into user email, and sign out
       if current_user.valid_password? params[:current_password]
-        token = Devise.token_generator.generate Mesin::User, :unlock_token
-        current_user.update_columns unlock_token: token[1], locked_at: DateTime.now
+        @token = Devise.token_generator.generate Mesin::User, :unlock_token
+        current_user.update_columns unlock_token: @token[1], locked_at: DateTime.now
 
-        Mesin::UserMailer.self_unlock_instructions current_user
+        Mesin::UserMailer.self_unlock_instructions(current_user, @token[0]).deliver_now
+        @msg        = "You've successfully lock your account. Check your email for Unlock Instructions."
+        redirect_to main_app.root_url 
       else
         @msg        = "Invalid password. Make sure for typing correctly"
+        redirect_to mesin.admin_accounts_url 
       end
-
-      redirect_to 
     end
 
     private

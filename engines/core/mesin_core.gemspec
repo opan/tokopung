@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'devise'
   s.add_dependency 'pundit'
+  # s.add_dependency 'jquery-turbolinks'
   
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails"

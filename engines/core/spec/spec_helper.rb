@@ -35,6 +35,7 @@ RSpec.configure do |config|
   # include factory_girls gem methods
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
+  config.include MesinHelper
   config.extend ControllerMacros, type: :controller
   config.infer_spec_type_from_file_location!
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

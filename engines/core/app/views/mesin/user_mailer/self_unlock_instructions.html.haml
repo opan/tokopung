@@ -3,6 +3,6 @@
     %h3 
       Hello #{@current_user.profile.username},
     %p
-      You&#39;ve successfully lock your account. If you want to unlock your account later, make sure you keep this email
+      You&#39;ve successfully lock your account. If you want to unlock your account later, make sure you keep this email.
     %p Click button below to unlock your account.
-    = link_to "Unlock Account", "#", class: "btn btn-info", role: "button" 
+    = link_to "Unlock Account", unlock_url(@current_user, unlock_token: @token), class: "btn btn-info", role: "button" , target: "_blank"

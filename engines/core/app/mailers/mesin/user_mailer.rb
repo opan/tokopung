@@ -5,8 +5,9 @@ module Mesin
     default template_path: "devise/mailer"
     layout "mesin_mailer"
 
-    def self_unlock_instructions current_user
+    def self_unlock_instructions current_user, token
       @current_user = current_user
+      @token = token
       mail(template_path: "mesin/user_mailer", to: current_user.email, subject: "Unlock Instructions")
     end
   end

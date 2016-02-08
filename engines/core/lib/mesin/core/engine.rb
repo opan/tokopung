@@ -17,6 +17,7 @@ require "capybara"
 require "database_cleaner"
 require "devise"
 require "pundit"
+# require "jquery-turbolinks"
 
 module Mesin
   module Core
@@ -34,7 +35,7 @@ module Mesin
 
       initializer "core.assets.precompile" do |app|
         app.config.assets.precompile += %w( *.coffee *.js *.css *.scss *.eot
-                                          *.svg *.ttf *.woff *.woff2 *.otf)
+                                          *.svg *.ttf *.woff *.woff2 *.otf *.less)
       end
 
       # setting up Core engine generators

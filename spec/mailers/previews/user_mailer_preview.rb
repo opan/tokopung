@@ -5,6 +5,6 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def self_unlock_instructions
-    UserMailer.self_unlock_instructions(Mesin::User.first)
+    UserMailer.self_unlock_instructions(Mesin::User.first, "faketoken")
   end
 end

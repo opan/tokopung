@@ -145,11 +145,48 @@ module Mesin
       context "if current_password password invalid" do
         it "message is \"Invalid password. Make sure for type correctly.\"" do
           delete :delete_account, current_password: "9999", id: subject.current_user.id
-          expect(assigns(:msg)).to eql "Invalid password. Make sure for type correctly."
+          expect(assigns(:msg)).to eql "Invalid password. Make sure for typing correctly."
         end
+
         it "and redirect_to index account panel " do
           delete :delete_account, current_password: "9999", id: subject.current_user.id
           expect(response).to redirect_to admin_accounts_path
+        end
+      end
+    end
+
+    describe "PATCH #:id/lock_account" do
+      context "when current_password is not valid" do
+        it "redirect_to admin_accounts_path" do
+          patch :lock_account, current_password: "tidakvalid", id: subject.current_user.id
+          expect(response).to redirect_to admin_accounts_path
+        end
+
+        it "and message is 'Invalid password. Make sure for typing correctly'" do
+          patch :lock_account, current_password: "tidakvalid", id: subject.current_user.id
+          expect(assigns(:msg)).to eql "Invalid password. Make sure for typing correctly"
+        end
+      end
+
+      context "when current_password is valid" do
+        it "user account is locked" do
+          patch :lock_account, current_password: "12345678", id: subject.current_user.id
+          expect(subject.current_user.access_locked?).to eql true
+        end
+
+        it "send email unlock instructions to user" do
+          patch :lock_account, current_password: "12345678", id: subject.current_user.id
+          expect(ActionMailer::Base.deliveries.count).to be >= 1
+        end
+
+        it "get message 'You've successfully lock your account. Check your email for Unlock Instructions.'" do
+          patch :lock_account, current_password: "12345678", id: subject.current_user.id
+          expect(assigns(:msg)).to eql "You've successfully lock your account. Check your email for Unlock Instructions."
+        end
+
+        it "and redirect_to main_app.root_path" do
+          patch :lock_account, current_password: "12345678", id: subject.current_user.id
+          expect(response).to redirect_to main_app.root_path
         end
       end
     end
