@@ -9,7 +9,7 @@ module Mesin
     let(:customer) {create(:role, :customer)}
 
     permissions :index?, :update_profile?, :add_user_emails?, :delete_user_email?, 
-      :update_password?, :delete_account? do
+      :update_password?, :delete_account?, :lock_account? do
       context "when user not exists" do
         it "access denied" do
           expect(subject).not_to permit(nil, Mesin::User)

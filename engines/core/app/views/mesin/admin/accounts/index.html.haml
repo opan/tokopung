@@ -132,10 +132,11 @@
 
 #modal_delete_account.modal.fade{tabindex: "-1", role: "dialog"}
   .modal-dialog
-    .modal-content
+    .modal-content.panel-danger
+      .modal-header.panel-heading
+        %h4 Delete Account Confirmation
+      
       = form_for current_user, as: :account, url: delete_account_admin_account_path(current_user), html: {id: "form_delete_account", method: :delete} do |f|
-        .modal-header
-          %h4 Delete Account Confirmation
 
         .modal-body
           .form-horizontal
@@ -147,4 +148,24 @@
         .modal-footer
           = f.button "Cancel", class: "btn btn-primary btn-sm", id: "btn_cancel_delete_account", data: {dismiss: "modal"}
           = f.button "Delete", class: "btn btn-danger btn-sm", id: "btn_delete_account"
+
+#modal_lock_account.modal.fade{tabindex: "-1", role: "dialog"}
+  .modal-dialog
+    .modal-content.panel-warning
+      .modal-header.panel-heading
+        %h4 Lock Account Confirmation
+
+      = form_for current_user, as: :account, url: lock_account_admin_account_path(current_user), html: {id: "form_lock_account", method: :patch} do |f|
+
+        .modal-body
+          %p.text-justify Please fill form below for confirmation
+          .form-horizontal
+            .form-group
+              = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+              .col-sm-8.col-md-8.col-lg-8
+                = password_field_tag :current_password, nil, class: "form-control", placeholder: "Confirm password.", required: true
+        
+        .modal-footer
+          = f.button "Cancel", class: "btn btn-primary btn-sm", id: "btn_cancel_lock_account", data: {dismiss: "modal"}
+          = f.button "Lock Account", class: "btn btn-primary btn-sm", id: "btn_lock_account"
 

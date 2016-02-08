@@ -30,5 +30,9 @@ module Mesin
     def delete_account?
       user.present?
     end
+
+    def lock_account?
+      user.present?
+    end
   end
 end

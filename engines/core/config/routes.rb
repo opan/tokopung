@@ -1,6 +1,6 @@
 Mesin::Core::Engine.routes.draw do
 
-  namespace :admin do
+  namespace :admin do   
     resources :dashboards, only: :index 
     resources :accounts, only: :index do
       member do

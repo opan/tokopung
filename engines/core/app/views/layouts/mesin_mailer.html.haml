@@ -1,0 +1,12 @@
+!!!
+%hmtl
+  %head
+    = stylesheet_link_tag    'mesin/application', media: 'all'
+  %body
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to "Tokopung", root_path, class: "navbar-brand navbar-link"
+    .container
+      .row
+        = yield

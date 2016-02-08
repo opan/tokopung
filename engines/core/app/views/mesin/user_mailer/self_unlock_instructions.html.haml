@@ -1,0 +1,8 @@
+.col-md-12.col-sm-12.col-xs-12.col-lg-12
+  .well.well-lg
+    %h3 
+      Hello #{@current_user.profile.username},
+    %p
+      You&#39;ve successfully lock your account. If you want to unlock your account later, make sure you keep this email
+    %p Click button below to unlock your account.
+    = link_to "Unlock Account", "#", class: "btn btn-info", role: "button" 

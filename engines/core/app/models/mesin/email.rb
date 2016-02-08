@@ -32,6 +32,7 @@ module Mesin
     # that users have primary email before, if user doesn't have, then force set current email to true
     def only_have_one_primary_email
       if is_primary.eql? true
+        # use #update_all to skip validation and callbacks in Mesin::Email model
         Mesin::Email.update_all(is_primary: false, user_id: user_id)
         self.is_primary = is_primary
       else
