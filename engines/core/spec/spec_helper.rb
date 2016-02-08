@@ -132,6 +132,8 @@ RSpec.configure do |config|
 
   config.after :each do
     DatabaseCleaner.clean
+    # clear ActionMailer::Base.deliveries after send email
+    ActionMailer::Base.deliveries.clear
   end
 
   # load the Core engine path helpers
