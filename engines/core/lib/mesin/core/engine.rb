@@ -17,7 +17,7 @@ require "capybara"
 require "database_cleaner"
 require "devise"
 require "pundit"
-# require "jquery-turbolinks"
+require "roadie-rails"
 
 module Mesin
   module Core
@@ -47,6 +47,10 @@ module Mesin
 
       if Rails.env.eql? "test"
         config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+        config.action_mailer.delivery_method = :test
+        config.action_mailer.perform_deliveries = true
+        config.action_mailer.deliveries = []    
+        config.action_mailer.default_options = {from: 'test@gmail.com'}
       end
 
       # load our mesin views to default paths, to make shorten call for rendering views
