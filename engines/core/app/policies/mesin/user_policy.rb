@@ -34,5 +34,9 @@ module Mesin
     def lock_account?
       user.present?
     end
+
+    def test?
+      user.present?
+    end
   end
 end

@@ -17,4 +17,6 @@
  *= require mesin/core
  *= require mesin/custom
  *= require mesin/bootstrap-datepicker3
+ *= require mesin/admin-lte/core-admin-lte
+ *= require mesin/admin-lte/skin-blue
  */

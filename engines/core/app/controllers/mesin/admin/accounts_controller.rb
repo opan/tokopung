@@ -7,6 +7,8 @@ module Mesin
       authorize current_user
     end
 
+    layout :choose_layout
+
     def update_profile
       if current_user.update_attributes(permit_params)
         @msg        = "Your profile successfully updated."
@@ -96,7 +98,15 @@ module Mesin
       end
     end
 
+    def test
+    end
+
     private
+      def choose_layout
+        if action_name.eql? "test"
+          "mesin/layout_test"
+        end
+      end
 
       def permit_params
         params.require(:account).permit(:email, :role, :password, :password_confirmation,

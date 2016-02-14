@@ -13,3 +13,4 @@
 //= require mesin/jquery.validate
 //= require mesin/additional-methods
 //= require mesin/core
+//= require mesin/admin-lte/core-admin-lte

@@ -11,6 +11,9 @@ Mesin::Core::Engine.routes.draw do
         delete :delete_account
         patch :lock_account
       end
+      collection do
+        get :test
+      end
     end # end resources :accounts
     
   end # end namespace :admin

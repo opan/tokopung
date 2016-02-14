@@ -35,7 +35,8 @@ module Mesin
 
       initializer "core.assets.precompile" do |app|
         app.config.assets.precompile += %w( *.coffee *.js *.css *.scss *.eot
-                                          *.svg *.ttf *.woff *.woff2 *.otf *.less)
+                                          *.svg *.ttf *.woff *.woff2 *.otf *.less
+                                          *.png *.jpg *.gif)
       end
 
       # setting up Core engine generators
