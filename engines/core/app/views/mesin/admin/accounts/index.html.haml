@@ -139,6 +139,11 @@
       = form_for current_user, as: :account, url: delete_account_admin_account_path(current_user), html: {id: "form_delete_account", method: :delete} do |f|
 
         .modal-body
+          %p.text-justify 
+            Attention! This action cannot be 
+            %b UNDO. 
+          %p.text-justify 
+            Please confirm your current password.
           .form-horizontal
             .form-group
               = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
@@ -158,7 +163,7 @@
       = form_for current_user, as: :account, url: lock_account_admin_account_path(current_user), html: {id: "form_lock_account", method: :patch} do |f|
 
         .modal-body
-          %p.text-justify Please fill form below for confirmation
+          %p.text-justify Please confirm your current password.
           .form-horizontal
             .form-group
               = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
