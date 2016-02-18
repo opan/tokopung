@@ -1,0 +1,175 @@
+.col-lg-9.col-md-8.col-sm-8
+  .page-header
+    %h3 Profile
+
+  - # start form profile
+  = form_for current_user, as: :account, remote: true, url:  update_profile_admin_account_path(current_user), html: {id: "form_profile", class: "form-horizontal", method: :put} do |f|
+    = f.fields_for :profile do |profile_user|
+      .form-group
+        = profile_user.label :username, "Username",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
+          = profile_user.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username", data: {rule_maxlength: 100}
+
+      .form-group
+        = profile_user.label :fullname, "Fullname",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
+          = profile_user.text_field :fullname, class: "form-control", autocomplete: "on",  placeholder: "Fullname", data: {rule_maxlength: 255}
+
+      .form-group
+        = profile_user.label :birthdate, "Birthdate",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
+          .input-group.date#birthdate_input_group
+            = profile_user.text_field :birthdate, class: "form-control", autocomplete: "on",  placeholder: "Birthdate"
+            %span.input-group-addon
+              %i.fa.fa-calendar
+
+
+      .form-group
+        = profile_user.label :homephone, "Home Phone",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
+          = profile_user.text_field :homephone, class: "form-control", autocomplete: "on",  placeholder: "Home Phone", data: {rule_maxlength: 12}
+
+      .form-group
+        = profile_user.label :mobilephone, "Mobile Phone",class: "control-label col-md-3 col-lg-3"
+        .col-md-9.col-lg-8 
+          = profile_user.text_field :mobilephone, class: "form-control", autocomplete: "on",  placeholder: "Mobil Phone", data: {rule_maxlength: 12}
+
+    .form-group
+      .col-md-9.col-lg-8.col-md-offset-3.col-lg-offset-3
+        = f.button "Update Profile", class: "btn btn-primary"
+  - # end form profile
+  
+  - # start form email settings
+  .page-header
+    %h3 Email Settings
+
+  %p.text-justify.text-info.hidden-xs
+    You can have more than one e-mail in Tokopung. And you can set up which
+    is primary email and others. Please be carefull for changing your e-mail.
+  
+  .row
+    .col-md-12.col-lg-12.col-sm-12.col-xs-12#div_email_settings
+      = render "list_email"
+  .row
+    .col-md-12
+      %span
+  .row
+    .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
+      %span
+    .col-md-12
+      .well.well-sm.visible-md-block.visible-lg-block.visible-sm-inline-block.hidden-xs
+        %span Add Email Address
+
+      = form_for current_user, as: :account, url: add_user_emails_admin_account_path(current_user) ,remote: true, html: {id: "form_add_email", class: "form-horizontal", method: :post} do |f|
+        = fields_for :emails do |email|
+          .form-group
+            .col-md-8.col-lg-8.col-sm-8.col-xs-8
+              = email.email_field :email, class: "form-control", placeholder: "Type your new email.", name: "account[emails_attributes][1][email]"
+            .col-md-4.col-lg-4.col-sm-4
+              = email.button "Add", class: "btn btn-primary"
+        
+
+      .page-header
+        %h3 Security
+      %p.text-justify.text-info.hidden-xs
+        Change your password. Make sure your new password is correct because this
+        action can not be undo.
+
+      = form_for current_user, as: :account, remote: true, url: update_password_admin_account_path(current_user), html: {id: "form_change_password", class: "form-horizontal", method: :patch} do |f|
+        .form-group
+          = label_tag :current_password, "Old Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          .col-sm-8.col-md-8.col-lg-8
+            = password_field_tag :current_password, nil, class: "form-control", placeholder: "Type your current password.", required: true
+
+        .form-group
+          = f.label :password, "New Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          .col-sm-8.col-md-8.col-lg-8
+            = f.password_field :password, class: "form-control", placeholder: "Type your new password.", required: true
+
+        .form-group
+          = f.label :password_confirmation, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+          .col-sm-8.col-md-8.col-lg-8
+            = f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your new password.", required: true
+
+        .form-group
+          .col-sm-8.col-md-8.col-lg-8.col-sm-offset-4.col-md-offset-4.col-lg-offset-4
+            = f.button "Change Password", class: "btn btn-primary"
+
+
+      %hr
+      / form Lock Account
+      .panel.panel-warning
+        .panel-heading
+          %h3.panel-title Lock Account
+        .panel-body
+          %p.text-justify.text-warning
+            Locking your account will make you temporarily lost access of your account. This feature really usefull when you not using your account for some time, to make sure no one can't access your account except your self.  This action make you logging out. Make sure your primary email is active. 
+
+          = button_tag "Lock Account", class: "btn btn-warning", data: {toggle: "modal", target: "#modal_lock_account"}
+
+      %hr
+      / form Delete Account
+      .panel.panel-danger
+        .panel-heading
+          %h3.panel-title Delete Account
+
+        .panel-body
+          %p.text-justify.text-warning
+            Deleting your account will make you logging out from this session and
+            this action can not be undo. But before you confirm deleting your account,
+            system will ask you for last time to confirm if you is the real owner of
+            this account and reassure you want to delete your account.
+          
+          = button_tag "Delete Account", class: "btn btn-danger", data: {toggle: "modal", target: "#modal_delete_account"}
+
+
+  - # end form security
+.col-lg-3.col-md-4.col-sm-4.hidden-xs
+  = image_tag "mesin/images.jpg", alt: "Gambar sample", class: "img-rounded img-responsive"
+  .text-center
+    = link_to "Change Avatar", '#'
+
+#modal_delete_account.modal.fade{tabindex: "-1", role: "dialog"}
+  .modal-dialog
+    .modal-content.panel-danger
+      .modal-header.panel-heading
+        %h4 Delete Account Confirmation
+      
+      = form_for current_user, as: :account, url: delete_account_admin_account_path(current_user), html: {id: "form_delete_account", method: :delete} do |f|
+
+        .modal-body
+          %p.text-justify 
+            Attention! This action cannot be 
+            %b UNDO. 
+          %p.text-justify 
+            Please confirm your current password.
+          .form-horizontal
+            .form-group
+              = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+              .col-sm-8.col-md-8.col-lg-8
+                = password_field_tag :current_password, nil, class: "form-control", placeholder: "Confirm password.", required: true
+        
+        .modal-footer
+          = f.button "Cancel", class: "btn btn-primary btn-sm", id: "btn_cancel_delete_account", data: {dismiss: "modal"}
+          = f.button "Delete", class: "btn btn-danger btn-sm", id: "btn_delete_account"
+
+#modal_lock_account.modal.fade{tabindex: "-1", role: "dialog"}
+  .modal-dialog
+    .modal-content.panel-warning
+      .modal-header.panel-heading
+        %h4 Lock Account Confirmation
+
+      = form_for current_user, as: :account, url: lock_account_admin_account_path(current_user), html: {id: "form_lock_account", method: :patch} do |f|
+
+        .modal-body
+          %p.text-justify Please confirm your current password.
+          .form-horizontal
+            .form-group
+              = label_tag :current_password, "Confirm Password", class: "control-label col-md-4 col-sm-4 col-lg-4"
+              .col-sm-8.col-md-8.col-lg-8
+                = password_field_tag :current_password, nil, class: "form-control", placeholder: "Confirm password.", required: true
+        
+        .modal-footer
+          = f.button "Cancel", class: "btn btn-primary btn-sm", id: "btn_cancel_lock_account", data: {dismiss: "modal"}
+          = f.button "Lock Account", class: "btn btn-primary btn-sm", id: "btn_lock_account"
+

@@ -33,7 +33,7 @@
     = stylesheet_link_tag    params[:controller], media: 'all' if asset_exists? params[:controller]
 
     = csrf_meta_tags
-  %body.hold-transition.skin-blue.sidebar-mini
+  %body.hold-transition.skin-blue.sidebar-mini.fixed
     .wrapper
       / Main Header
       %header.main-header
@@ -42,12 +42,11 @@
 
           / mini logo for sidebar mini 50x50 pixels
           %span.logo-mini
-            %b> A
-            LT
+            %b> M
           / logo for regular state and mobile devices
           %span.logo-lg
-            %b> Admin
-            LTE
+            %b> M
+            esin
         / Header Navbar
         %nav.navbar.navbar-static-top{:role => "navigation"}
           / Sidebar toggle button
