@@ -1,7 +1,7 @@
 Mesin::Core::Engine.routes.draw do
 
   namespace :admin do   
-    resources :dashboards, only: :index 
+    get "dashboards", to: "dashboards#index" 
     resources :accounts, only: :index do
       member do
         put :update_profile

@@ -1,0 +1,45 @@
+%aside.main-sidebar
+  / sidebar: style can be found in sidebar.less
+  %section.sidebar
+    / Sidebar user panel (optional)
+    .user-panel
+      .pull-left.image
+        = image_tag "mesin/no-avatar", class: "img-circle", alt: "User Image"
+      
+      .pull-left.info
+        %p Alexander Pierce
+        / Status
+        = link_to "#" do
+          %i.fa.fa-circle.text-success
+          Online
+    / search form (Optional)
+    %form.sidebar-form{:action => "#", :method => "get"}
+      .input-group
+        %input.form-control{:name => "q", :placeholder => "Search...", :type => "text"}
+          %span.input-group-btn
+            %button#search-btn.btn.btn-flat{:name => "search", :type => "submit"}
+              %i.fa.fa-search
+    / /.search form
+    / Sidebar Menu
+    %ul.sidebar-menu
+      %li.header MAIN NAVIGATION
+      / Optionally, you can add icons to the links
+      %li{class: active_menu?(current_page?(mesin.root_path) ? mesin.root_path : mesin.admin_dashboards_path)}
+        = link_to mesin.admin_dashboards_path do
+          %i.fa.fa-dashboard
+          %span Dashboard
+      %li{class: active_menu?(mesin.admin_accounts_path)} 
+        = link_to mesin.admin_accounts_path do
+          %i.fa.fa-user
+          %span Profile & Account
+      %li
+        = link_to "#" do
+          %i.fa.fa-envelope
+          %span Email
+      %li
+        = link_to "#" do
+          %i.fa.fa-lock
+          %span Security
+          
+    / /.sidebar-menu
+  / /.sidebar

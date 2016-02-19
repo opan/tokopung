@@ -6,3 +6,45 @@
         %i.fa.fa-user
         Profile & Account
 
+%section.content
+  .row
+    .col-md-6.col-lg-6
+      / Profile box
+      .box.box-primary
+        .box-header.with-border
+          %h3.box-title Basic Information
+        .box-body
+          = form_for current_user, as: :account, remote: true, url:  update_profile_admin_account_path(current_user), html: {id: "form_profile", class: "form-horizontal", method: :put} do |f|
+            = f.fields_for :profile do |profile_user|
+              .form-group
+                = profile_user.label :username, "Username",class: "control-label col-md-3 col-lg-3"
+                .col-md-9.col-lg-8 
+                  = profile_user.text_field :username, class: "form-control", autocomplete: "on", autofocus: "", required: true, placeholder: "Username", data: {rule_maxlength: 100}
+
+              .form-group
+                = profile_user.label :fullname, "Fullname",class: "control-label col-md-3 col-lg-3"
+                .col-md-9.col-lg-8 
+                  = profile_user.text_field :fullname, class: "form-control", autocomplete: "on",  placeholder: "Fullname", data: {rule_maxlength: 255}
+
+              .form-group
+                = profile_user.label :birthdate, "Birthdate",class: "control-label col-md-3 col-lg-3"
+                .col-md-9.col-lg-8 
+                  .input-group.date#birthdate_input_group
+                    = profile_user.text_field :birthdate, class: "form-control", autocomplete: "on",  placeholder: "Birthdate"
+                    %span.input-group-addon
+                      %i.fa.fa-calendar
+
+
+              .form-group
+                = profile_user.label :homephone, "Home Phone",class: "control-label col-md-3 col-lg-3"
+                .col-md-9.col-lg-8 
+                  = profile_user.text_field :homephone, class: "form-control", autocomplete: "on",  placeholder: "Home Phone", data: {rule_maxlength: 12}
+
+              .form-group
+                = profile_user.label :mobilephone, "Mobile Phone",class: "control-label col-md-3 col-lg-3"
+                .col-md-9.col-lg-8 
+                  = profile_user.text_field :mobilephone, class: "form-control", autocomplete: "on",  placeholder: "Mobil Phone", data: {rule_maxlength: 12}
+
+            .form-group
+              .col-md-9.col-lg-8.col-md-offset-3.col-lg-offset-3
+                = f.button "Update Profile", class: "btn btn-primary"

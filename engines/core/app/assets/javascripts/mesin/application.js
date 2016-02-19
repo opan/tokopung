@@ -14,4 +14,5 @@
 //= require mesin/additional-methods
 //= require mesin/core
 //= require mesin/admin-lte/core-admin-lte
-//= require mesin/icheck.min
+//= require mesin/admin-lte/jquery.slimscroll.min
+
